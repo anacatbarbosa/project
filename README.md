@@ -6,11 +6,14 @@ https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/
 
 https://flask.palletsprojects.com/en/2.2.x/
 
-https://flask-session.readthedocs.io/en/latest/
+https://flask-login.readthedocs.io/en/latest/
 
 https://www.python.org/downloads/
 
-# To run on PC.
+If you already have pip installed it's possible to just run:
+pip install -r flask_program/requirements.txt
+
+# To run only in PC.
 command: python3 main.py
 
 # To run as local network host
@@ -18,4 +21,5 @@ command: python3 main_locally_host.py #to run hosting into your local network us
 
 # Credits:
 Menu icons created by Freepik - Flaticon https://www.flaticon.com/free-icons/menu 
+Big thanks to: https://www.youtube.com/@TechWithTim
 

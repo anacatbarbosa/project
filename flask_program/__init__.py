@@ -3,21 +3,24 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-from flask_session import Session
-
+db = SQLAlchemy()
+DB_NAME = "database.db"
 
 def creat_app():
     #configure app name
     app = Flask(__name__)
-
-    #template auto-reload
+    app.config['SECRET_KEY'] = 'ashdkasjd asdlkjasdl' #here while its not going to production.
+    # template auto-reload
     app.config["TEMPLATES_AUTO_RELOAD"] = True
 
-    # Setting session to use filesystem 
-    app.config["SESSION_PERMANENT"] = False
-    app.config["SESSION_TYPE"] = "filesystem"
+    # Setting database according to https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/quickstart/#configure-the-extension
+    app.config["SQLALCHEMY_DATABASE_URI"] = f'sqlite:///{DB_NAME}'
 
-    Session(app)
+    # Initializing the database, all DOC here: https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/quickstart/
+    db.init_app(app)
+
+    # Setting session
+    app.config["SESSION_PERMANENT"] = False
 
     #importing the blueprint views to register into our flask app
     from .auth import auth
@@ -27,3 +30,4 @@ def creat_app():
     app.register_blueprint(auth, url_prefix='/')
 
     return app
+
