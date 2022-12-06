@@ -3,7 +3,7 @@ from flask_login import UserMixin
 
 from . import db
 
-# importing the database from the __init__.py, the "from ." means we will import from a file locate at this same folder
+# importing the database from the __init__.py, the "from ." means we will import from a file locates at this same folder
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
