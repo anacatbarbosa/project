@@ -10,9 +10,10 @@ https://flask-session.readthedocs.io/en/latest/
 
 https://www.python.org/downloads/
 
-# To run.
+# To run on PC.
 command: python3 main.py
 
+# To run as local network host
 command: python3 main_locally_host.py #to run hosting into your local network using a 5000 port, it's possible to change the port at the file main_locally_host.py at "app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', XXXX)))" Where XXXX = port number - Please be careful and don't trust unknown domains or public networks, stay safe.
 
 # Credits:
