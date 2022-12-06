@@ -6,4 +6,6 @@ https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/
 
 https://flask.palletsprojects.com/en/2.2.x/
 
+https://flask-session.readthedocs.io/en/latest/
+
 https://www.python.org/downloads/
