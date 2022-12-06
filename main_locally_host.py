@@ -1,5 +1,6 @@
-import  os
-from    flask_program import creat_app
+import os
+
+from flask_program import creat_app
 
 app = creat_app()
 
