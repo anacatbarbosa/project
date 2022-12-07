@@ -10,6 +10,10 @@ def creat_app():
     #configure app name
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'ashdkasjd asdlkjasdl' #here while its not going to production.
+
+    # Setting the upload pictures folder
+    picFolder = 'flask_program/static/uploaded_files'
+    app.config['UPLOAD_FOLDER'] = picFolder
     # template auto-reload
     app.config["TEMPLATES_AUTO_RELOAD"] = True
 
@@ -29,5 +33,16 @@ def creat_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
+    # Creating the database
+    from .models_database import Note, Post, User 
+
+    creat_database(app) #only creates a database if it doesn't exist
+
     return app
 
+
+def creat_database(app):
+    if not os.path.exists('./instance/' + DB_NAME):
+        with app.app_context():
+            db.create_all()
+        print("Database Created!!")

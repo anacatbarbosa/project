@@ -1,0 +1,14 @@
+{% extends "index.html"%}
+{% block title %} Image test {% endblock %}
+{% block main %}
+    <form action='/test' method=post enctype=multipart/form-data>
+        <input type=file name=file>
+        <input type=submit value=Upload>
+    </form>
+
+    {% for img in imgs_uploaded %}
+        <div>
+            <img src={{img.img_path}}>
+        </div>
+    {% endfor %}
+{% endblock %}
