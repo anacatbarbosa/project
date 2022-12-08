@@ -19,7 +19,7 @@ pic_to_html =  '../static/uploaded_files' #path to pass to html file, this path 
 def index():
 
     img = Post.query.filter(Post.user_id == 1).all()
-    return render_template('index.html', posts=img)
+    return render_template('index.html', posts=img, counter=1)
 
 
 
