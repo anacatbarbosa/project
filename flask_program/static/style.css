@@ -3,6 +3,11 @@
     font-size: 25px;
 }
 
+.nav-item {
+  text-shadow: 2px 2px lightpink;
+  color: #4b4c4d;
+}
+
 .navbar-toggler {
     color: #F7D5DC !important;
 }
@@ -23,6 +28,13 @@ body {
 main {
     min-height: 100vh;
     background-color: #f5f5f5;
+}
+
+main h1 {
+  margin-top: 15px;
+  text-align: center;
+  color: #FF8099;
+  text-shadow: 2px 2px lightgray;
 }
 
 #carouselFade {
