@@ -1,5 +1,6 @@
 .pink-nav {
     background-color: #F7D5DC !important;
+    font-size: 25px;
 }
 
 .navbar-toggler {
@@ -16,6 +17,7 @@
 
 body {
     background-color: #eee6dd;
+    font-family: 'Indie Flower', cursive;
 }
 
 main {
@@ -78,7 +80,7 @@ main {
   .footer-basic .copyright {
     margin-top:15px;
     text-align:center;
-    font-size:13px;
+    font: size 15px;
     color:#aaa;
     margin-bottom:0;
   }
