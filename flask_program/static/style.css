@@ -16,13 +16,29 @@
 }
 
 body {
-    background-color: #eee6dd;
+    background-color: #f5f5f5;
     font-family: 'Indie Flower', cursive;
 }
 
 main {
     min-height: 100vh;
     background-color: #f5f5f5;
+}
+
+#carouselFade {
+  width: 60vw;
+  height: 50vh;
+  margin: 25px auto;
+}
+
+.carousel-inner, .carousel-item {
+  height: 100%;
+}
+
+.carousel-item img {
+  height: 100%;
+  margin: auto;
+  border-radius: 15px;
 }
 
 .footer-basic {
