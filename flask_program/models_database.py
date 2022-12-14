@@ -25,5 +25,5 @@ class User(db.Model, UserMixin): #user information
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.Text, unique=True, nullable=False)
     password = db.Column(db.Text, nullable=False)
-    user_name = db.Column(db.Text, nullable=False)
+    username = db.Column(db.Text, nullable=False)
     posts = db.relationship('Post')
