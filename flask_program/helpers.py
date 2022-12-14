@@ -58,10 +58,10 @@ def flash_all(password_errors):
     if password_errors['lowercase'] == False:
         flash('The password must contain at least 1 lowercase letter.', category='error')
 
-def check_errors(username, email, password1, password2):
+def check_errors(name, email, password1, password2):
     errors = 0
-    if len(username) < 2:
-        flash('Username must be greater than 1.', category='error')
+    if len(name) < 2:
+        flash('Name must be greater than 1.', category='error')
         errors += 1
     if not check_email(email):
         flash('Invalid E-mail.', category='error')

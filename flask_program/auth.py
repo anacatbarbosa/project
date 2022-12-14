@@ -17,38 +17,45 @@ auth = Blueprint('auth', __name__) #setting the Blueprint variable name.
 def login():
     if request.method == 'POST':
         # get user inputs
-        username = request.form.get('username')
+        email = request.form.get('email')
         password = request.form.get('password')
 
         # load the user information at user variable
-        user = User.query.filter_by(username=username).first()
+        user = User.query.filter_by(email=email).first()
 
         if user:
             # if the user exist, confirm the password.
             if not check_password_hash(user.password, password):
-                flash('Invalid password and username combination. Please try again.', category='error')
+                flash('Invalid password and e-mail combination. Please try again.', category='error')
             else:
                 # if the user and password match, send to the index page
                 return redirect('/')
         else:
             # if the user doesn't exist, flashes an error message
-            flash('Invalid Username. Please try again or register a new account.', category='error')
+            flash('Invalid e-mail. Please try again or register a new account.', category='error')
     return render_template('login.html')
 
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        username = request.form.get('username')
+        name = request.form.get('username')
         email = request.form.get('email')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
         
-        #check_errors will check the email, password and username, if finds any kind of erros will return the number of erros found, otherwise will return 0. Check more at helpers.py
-        if check_errors(username, email, password1, password2) > 0:
+        # Creating an user variable to check if the e-mail already in use.
+        user = User.query.filter_by(email=email).first()
+        if user:
+            if user.email == email:
+                flash('E-mail already in use. Please try another one.', category='error')
+                return render_template('login.html')
+
+        #check_errors will check the email, password and user name, if finds any kind of erros will return the number of erros found, otherwise will return 0. Check more at helpers.py
+        if check_errors(name, email, password1, password2) > 0:
             return render_template('login.html')
         else:
-            new_user = User(email=email, password=generate_password_hash(password1), username=username)
+            new_user = User(email=email, password=generate_password_hash(password1), name=name)
             db.session.add(new_user)
             db.session.commit()
             flash('Account created!', category='success')
