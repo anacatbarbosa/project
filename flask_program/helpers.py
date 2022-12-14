@@ -30,7 +30,7 @@ def check_password_requirements(password):
             password_need['number'] = True
         if char.isalpha():
             password_need['letter'] = True
-        if not char.alnum():
+        if not char.isalnum():
             password_need['special_char'] = True
         if char.isupper():
             password_need['uppercase'] = True
@@ -57,3 +57,21 @@ def flash_all(password_errors):
         flash('The password must contain at least 1 uppercase letter.', category='error')
     if password_errors['lowercase'] == False:
         flash('The password must contain at least 1 lowercase letter.', category='error')
+
+def check_errors(username, email, password1, password2):
+    errors = 0
+    if len(username) < 2:
+        flash('Username must be greater than 1.', category='error')
+        errors += 1
+    if not check_email(email):
+        flash('Invalid E-mail.', category='error')
+        errors += 1
+    # check_password_requirements is a function that returns 'success' or a dictionary that contains all the error with a value False. 
+    if check_password_requirements(password1) != 'success':
+        # flash_all get the dict returned by check_password_requirements and flash all the errors
+        flash_all(check_password_requirements(password1))
+        errors += 1
+    if password1 != password2:
+        flash('Passwords do not match. Please try again.', category='error')
+        errors += 1
+    return errors

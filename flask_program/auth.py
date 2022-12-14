@@ -6,7 +6,7 @@ from flask import (  # Blueprint allow to code the views, or @app.routes, in mul
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from . import db
-from .helpers import check_email, check_password_requirements, flash_all
+from .helpers import check_errors
 from .models_database import User
 
 # Blueprint allow to code the views, or @app.routes, in multiple files
@@ -44,10 +44,13 @@ def register():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
         
-        if len(username) < 2:
-            flash('Username must be greater than 1', category='error')
-        if not check_email(email):
-            flash('Invalid E-mail', category='error')
-        if check_password_requirements(password1) != 'success':# 0 == its right, != 0 means something is wrong 
-            flash_all(check_password_requirements(password1))
+        #check_errors will check the email, password and username, if finds any kind of erros will return the number of erros found, otherwise will return 0. Check more at helpers.py
+        if check_errors(username, email, password1, password2) > 0:
+            return render_template('login.html')
+        else:
+            new_user = User(email=email, password=generate_password_hash(password1), username=username)
+            db.session.add(new_user)
+            db.session.commit()
+            flash('Account created!', category='success')
+            return redirect(url_for('views.index'))
     return render_template('login.html')
