@@ -1,7 +1,8 @@
 h2 {
     color: #FF8099;
-    margin: 5px;
+    margin: 10px;
     text-align: center;
+    text-shadow: 2px 2px lightgray;
 }
 
 form {
