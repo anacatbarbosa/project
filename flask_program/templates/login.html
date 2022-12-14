@@ -2,18 +2,57 @@
 {% block link %}<link rel="stylesheet" href="static/login.css">{% endblock %}
 {% block title %}Login &#127856;{% endblock %}
 {% block main %}
-<form action="/login" method="post">
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" value="Login">
-</form>
+<h2>Welcome back!</h2>
+<form>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">E-mail</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="E-mail">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </form>
 <hr>
 <h2>Don't have an account? Register below!</h2>
-<form action="/register" method="post">
-    <input type="text" name="username" placeholder="Username">
-    <input type="email" name="email" placeholder="E-mail">
-    <input type="password" name="password1" placeholder="Password">
-    <input type="password" name="password2" placeholder="Confirm Password">
-    <input type="submit" value="Register">
-</form>
+<form>
+    <div class="form-group row">
+        <label for="inputUsername3" class="col-sm-2 col-form-label">Username</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputUsername3" placeholder="Username">
+        </div>
+      </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">E-mail</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="E-mail">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputPassword4" class="col-sm-2 col-form-label">Confirm Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+        </div>
+      </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+    </div>
+  </form>
 {% endblock %}
