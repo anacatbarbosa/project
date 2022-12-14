@@ -11,4 +11,4 @@ auth = Blueprint('auth', __name__) #setting the Blueprint variable name.
 def login():
     if request.method == 'POST':
         a = 'test'
-    render_template('login.html')
+    return render_template('login.html')
