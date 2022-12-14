@@ -48,12 +48,12 @@ def check_password_requirements(password):
 # Flash the error messages according to the dict given from check_password_requirements
 def flash_all(password_errors): 
     if password_errors['number'] == False:
-        flash('The password must contain at least 8 digits', category='error')
+        flash('The password must contain at least 8 digits.', category='error')
     if password_errors['letter'] == False:
-        flash('The password must contain at least 1 Letter', category='error')
+        flash('The password must contain at least 1 Letter.', category='error')
     if password_errors['special_char'] == False:
-        flash('The password must contain at least 1 special character ex: !"#$%&/()?.,', category='error')
+        flash('The password must contain at least 1 special character ex: !"#$%&/()?,.', category='error')
     if password_errors['uppercase'] == False:
-        flash('The password must contain at least 1 uppercase letter', category='error')
+        flash('The password must contain at least 1 uppercase letter.', category='error')
     if password_errors['lowercase'] == False:
-        flash('The password must contain at least 1 lowercase letter', category='error')
+        flash('The password must contain at least 1 lowercase letter.', category='error')
