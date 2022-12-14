@@ -46,7 +46,28 @@
             </div>
         </header>
         <main>
-            {% block main %}
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'error'%}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% else %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+            {% endfor%}
+          {% endif %}
+          {% endwith %}
+          {% block main %}
             <h1>Receitas em Destaque &#127856;</h1>
             <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
               <div class="carousel-inner">
@@ -65,7 +86,7 @@
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
-            {% endblock %}
+          {% endblock %}
         </main>
         <div class="footer-basic">
             <footer>
