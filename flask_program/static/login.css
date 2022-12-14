@@ -1,8 +1,12 @@
 h2 {
     color: #FF8099;
-    margin: 10px;
+    margin: 15px;
     text-align: center;
     text-shadow: 2px 2px lightgray;
+}
+
+hr {
+    margin: 25px;
 }
 
 form {
@@ -32,4 +36,11 @@ form button {
 .btn-primary:active, .btn-primary:focus {
     border-color: #FF8099 !important;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 128, 153, 0.6) !important;
+}
+
+#cupcakes {
+    display: block;
+    margin: auto;
+    height: 250px;
+    width: 400px;
 }
