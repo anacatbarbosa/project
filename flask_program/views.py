@@ -26,7 +26,7 @@ def index():
 @views.route('/settings')
 @login_required
 def settings():
-    return render_template('settings.html')
+    return render_template('settings.html', user=current_user)
 
 
 @views.route('/test', methods=['GET', 'POST'])
