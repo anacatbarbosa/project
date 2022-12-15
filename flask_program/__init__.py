@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -23,9 +24,6 @@ def creat_app():
     # Initializing the database, all DOC here: https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/quickstart/
     db.init_app(app)
 
-    # Setting session
-    app.config["SESSION_PERMANENT"] = False
-
     #importing the blueprint views to register into our flask app
     from .auth import auth
     from .views import views
@@ -34,7 +32,18 @@ def creat_app():
     app.register_blueprint(auth, url_prefix='/')
 
     # Creating the database
-    from .models_database import Note, Post, User 
+    from .models_database import Note, Post, User
+
+    # Setting Flask_login according to https://flask-login.readthedocs.io/en/latest/#configuring-your-application
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = 'view.index'
+    login_manager.login_message_category = 'error'
+    
+    # Inform what is and where is the user id https://flask-login.readthedocs.io/en/latest/#how-it-works   
+    @login_manager.user_loader 
+    def load_user(id):
+        return User.query.get(int(id))
 
     creat_database(app) #only creates a database if it doesn't exist
 

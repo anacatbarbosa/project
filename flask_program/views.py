@@ -3,6 +3,7 @@ import os
 
 from flask import (Blueprint, flash, redirect, render_template, request,
                    session, url_for)
+from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
 
 from . import db
@@ -19,8 +20,7 @@ pic_to_html =  '../static/uploaded_files' #path to pass to html file, this path 
 def index():
 
     img = Post.query.filter(Post.user_id == 1).all()
-    return render_template('index.html', posts=img, counter=1)
-
+    return render_template('index.html', posts=img, user=current_user)
 
 
 @views.route('/test', methods=['GET', 'POST'])
@@ -38,7 +38,7 @@ def test():
         path_save = os.path.join(upload_folder, filename)
         pic.save(path_save)
         path_html = os.path.join(pic_to_html, filename)
-        post = Post(img_path=path_html, filename=filename, mimetype=mimetype, user_id=1)
+        post = Post(img_path=path_html, filename=filename, mimetype=mimetype, user_id=1) 
         db.session.add(post)
         db.session.commit()
     
