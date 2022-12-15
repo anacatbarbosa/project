@@ -23,6 +23,12 @@ def index():
     return render_template('index.html', posts=img, user=current_user)
 
 
+@views.route('/settings')
+@login_required
+def settings():
+    return render_template('settings.html')
+
+
 @views.route('/test', methods=['GET', 'POST'])
 def test():
 
