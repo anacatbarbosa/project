@@ -36,9 +36,18 @@
                           <li class="nav-item">
                             <a class="nav-link" href="#">Recipes</a>
                           </li>
+                          {% if user.is_authenticated %}
+                          <li class="nav-item ms-auto">
+                            <a class="nav-link" href="{{ url_for('views.test') }}">Settings</a>
+                          </li>
+                          <li class="nav-item ms-auto">
+                            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+                          </li>
+                          {% else %}
                           <li class="nav-item ms-auto">
                             <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
                           </li>
+                          {% endif %}
                         </ul>
                       </div>
                     </div>
