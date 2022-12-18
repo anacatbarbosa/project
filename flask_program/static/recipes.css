@@ -1,1 +1,11 @@
+h2 {
+    color: #FF8099;
+    margin: 15px;
+    text-align: center;
+    text-shadow: 2px 2px lightgray;
+}
 
+p {
+    font-size: 20px;
+    text-align: center;
+}
