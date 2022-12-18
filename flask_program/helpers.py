@@ -80,3 +80,40 @@ def check_errors(name, email, password1, password2):
 # https://flask.palletsprojects.com/en/2.2.x/patterns/fileuploads/#a-gentle-introduction
 def allowed_file(filename): 
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# func to recieve a list in a str format and return as a true list, ex: recive a str - "['teste', 'oi']" and return a list - ['teste', 'oi']
+# if no str pass return a empty list, if an incorrect format value is pass return none
+def str_to_list(string):
+    list_to_return = []
+    item_to_append = ''
+    # if str is not a string return None
+    if type(string) != type(str()):
+        return None
+
+    # if str is empty or an empyt list, return an empyt list
+    if string == '' or string == '[]':
+        return list_to_return
+    
+    # Going throught the string to check where is the '[', ']' and the itens inside of it
+
+    quote_one = 0 # check if the forloop found the first quote, after the first quote it will add all to the item_to_append
+    quote_two = 0 # check if the forloop found the second quote, after the second quote it will add the item_to_append to the list_to_returns
+
+    for char in string:
+        if char == "'" and quote_one == 0:
+            quote_one = 1
+            quote_two = 0
+
+        elif char == "'" and quote_one == 1:
+            quote_one = 0
+            quote_two = 1
+
+        elif quote_one == 1:
+            item_to_append += char
+
+        if quote_two == 1:
+            list_to_return.append(item_to_append)
+            item_to_append = ''
+            quote_two = 0
+
+    return list_to_return
