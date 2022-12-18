@@ -13,7 +13,6 @@ class Post(db.Model, UserMixin):
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     filename = db.Column(db.Text, nullable=False)
     img_path = db.Column(db.Text, nullable=False, unique=True)
-    mimetype = db.Column(db.Text, nullable=False)
     title = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 

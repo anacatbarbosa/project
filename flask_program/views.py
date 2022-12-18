@@ -7,20 +7,20 @@ from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
 
 from . import db
+from .helpers import allowed_file
 from .models_database import Post, User
 
 #Blueprint allow to code the views, or @app.routes, in multiple files
 
 views = Blueprint('views', __name__) #setting the Blueprint variable name.
 upload_folder = 'flask_program/static/uploaded_files'# path to the uploaded folder to save the files. Path from main.py to upoladed_files
-pic_to_html =  '../static/uploaded_files' #path to pass to html file, this path + filename will inform the url to the html go take it
-#path_save = os.path.join(upload_folder, filename)
+file_to_html =  '../static/uploaded_files' #path to pass to html file, this path + filename will inform the url to the html go take it
 
 @views.route('/')
 def index():
 
-    img = Post.query.filter(Post.user_id == 1).all()
-    return render_template('index.html', posts=img, user=current_user)
+    carousel = Post.query.filter(Post.carousel == 1).all()
+    return render_template('index.html', posts=carousel, user=current_user)
 
 
 @views.route('/settings')
@@ -33,20 +33,30 @@ def settings():
 def recipes():
 
     if request.method == 'POST':
-        pic = request.files['file']
+        # Get the only one or the multiple files from html
+        files = request.files.getlist['file[]']
+        description = request.form.get('recipe_description')
+        title = request.form.get('recipe_title')
 
-        if not pic:
-            flash('File not found, please select a valid file.', category='error')
-        else:
-            filename = secure_filename(pic.filename)
-            mimetype = pic.mimetype
-            upload_folder = 'flask_program/static/uploaded_files'
-            path_save = os.path.join(upload_folder, filename)
-            pic.save(path_save)
-            path_html = os.path.join(pic_to_html, filename)
-            post = Post(carousel=0, description="test", filename=filename, img_path=path_html, mimetype=mimetype, title="Test", user_id=1) 
-            db.session.add(post)
-            db.session.commit()
+        file_names = []
+        path_html = []
+        for file in files:
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file)
+                file_names.append(filename)
+                path_save = os.path.join(upload_folder, filename)
+                file.save(path_save)
+                path_html.append(os.path.join(file_to_html, filename))
+            else:
+                flash('Allowed image types are -> png, jpg, jpeg', category='error')
+                return redirect('views.recipes')
+
+        post = Post(carousel=0, description=description, filename=filename, img_path=path_html, title=title, user_id=current_user.get_id()) 
+        db.session.add(post)
+        db.session.commit()
     
     img = Post.query.filter(Post.carousel == 0).all()
+    
+    print(len(img))
+    print(current_user.get_id())
     return render_template('recipes.html', imgs_uploaded = img, user=current_user)
