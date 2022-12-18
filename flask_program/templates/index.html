@@ -34,13 +34,13 @@
                             <a class="nav-link" href="#">About</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="#">Recipes</a>
+                            <a class="nav-link" href="{{ url_for('views.recipes') }}">Recipes</a>
                           </li>
                           {% if user.is_authenticated %}
                           <li class="nav-item ms-auto">
                             <a class="nav-link" href="{{ url_for('views.settings') }}">Settings</a>
                           </li>
-                          <li class="nav-item ms-auto">
+                          <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
                           </li>
                           {% else %}
