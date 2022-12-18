@@ -1,6 +1,9 @@
 {% extends "index.html" %}
 {% block link %}<link rel="stylesheet" href="static/recipes.css">{% endblock %}
-{% block title %}Recipes &#127856;{% endblock %}
+{% block title %}Recipes{% endblock %}
 {% block main %}
-
+    <form action="/test" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
 {% endblock %}
