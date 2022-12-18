@@ -2,6 +2,7 @@ import re
 
 from flask import flash
 
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 def check_email(email): # checking if the e-mail is valid using re, https://docs.python.org/3/library/re.html
     regex =  '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
@@ -75,3 +76,7 @@ def check_errors(name, email, password1, password2):
         flash('Passwords do not match. Please try again.', category='error')
         errors += 1
     return errors
+
+# https://flask.palletsprojects.com/en/2.2.x/patterns/fileuploads/#a-gentle-introduction
+def allowed_file(filename): 
+	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
