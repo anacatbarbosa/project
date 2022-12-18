@@ -36,7 +36,7 @@ def recipes():
         pic = request.files['file']
 
         if not pic:
-            flash('File not found, please select a valid file.')
+            flash('File not found, please select a valid file.', category='error')
         else:
             filename = secure_filename(pic.filename)
             mimetype = pic.mimetype
