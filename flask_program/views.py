@@ -29,24 +29,24 @@ def settings():
     return render_template('settings.html', user=current_user)
 
 
-@views.route('/test', methods=['GET', 'POST'])
-def test():
+@views.route('/recipes', methods=['GET', 'POST'])
+def recipes():
 
     if request.method == 'POST':
         pic = request.files['file']
 
         if not pic:
-            return 400;
-        
-        filename = secure_filename(pic.filename)
-        mimetype = pic.mimetype
-        upload_folder = 'flask_program/static/uploaded_files'
-        path_save = os.path.join(upload_folder, filename)
-        pic.save(path_save)
-        path_html = os.path.join(pic_to_html, filename)
-        post = Post(img_path=path_html, filename=filename, mimetype=mimetype, user_id=1) 
-        db.session.add(post)
-        db.session.commit()
+            flash('File not found, please select a valid file.')
+        else:
+            filename = secure_filename(pic.filename)
+            mimetype = pic.mimetype
+            upload_folder = 'flask_program/static/uploaded_files'
+            path_save = os.path.join(upload_folder, filename)
+            pic.save(path_save)
+            path_html = os.path.join(pic_to_html, filename)
+            post = Post(carousel=0, description="test", filename=filename, img_path=path_html, mimetype=mimetype, title="Test", user_id=1) 
+            db.session.add(post)
+            db.session.commit()
     
-    img = Post.query.filter(Post.user_id == 1).all()
-    return render_template('test_img.html', imgs_uploaded = img)
+    img = Post.query.filter(Post.carousel == 0).all()
+    return render_template('recipes.html', imgs_uploaded = img, user=current_user)

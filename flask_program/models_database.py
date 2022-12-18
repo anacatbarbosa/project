@@ -8,17 +8,14 @@ from . import db
 # importing the database from the __init__.py, the "from ." means we will import from a file locates at this same folder
 class Post(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    img_path = db.Column(db.Text, nullable=False, unique=True)
-    filename = db.Column(db.Text, nullable=False)
-    mimetype = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-
-class Note(db.Model): #to store when something was posted
-    id = db.Column(db.Integer, primary_key=True)
-    data = db.Column(db.Text)
+    carousel = db.Column(db.Integer, nullable=False) # Carousel = 1 means it's to use at carousel, can only be added by adm's not regular users. Carousel = 0 means regular posts from the users.
+    description = db.Column(db.Text, nullable=False)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
-    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    filename = db.Column(db.Text, nullable=False)
+    img_path = db.Column(db.Text, nullable=False, unique=True)
+    mimetype = db.Column(db.Text, nullable=False)
+    title = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
 class User(db.Model, UserMixin): #user information

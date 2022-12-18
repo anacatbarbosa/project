@@ -32,12 +32,12 @@ def creat_app():
     app.register_blueprint(auth, url_prefix='/')
 
     # Creating the database
-    from .models_database import Note, Post, User
+    from .models_database import Post, User
 
     # Setting Flask_login according to https://flask-login.readthedocs.io/en/latest/#configuring-your-application
     login_manager = LoginManager()
     login_manager.init_app(app)
-    login_manager.login_view = 'view.index'
+    login_manager.login_view = 'views.index'
     login_manager.login_message_category = 'error'
     
     # Inform what is and where is the user id https://flask-login.readthedocs.io/en/latest/#how-it-works   
