@@ -63,8 +63,12 @@ def recipes():
         db.session.add(post)
         db.session.commit()
     
-    img = Post.query.filter(Post.carousel == 0).first()
-    test = str_to_list(img.img_path)
-    for i in test:
-        print(i)  
-    return render_template('recipes.html', imgs_uploaded = img, user=current_user)
+    # Post_info = recipes titles and descriptions
+    post_info = Post.query.filter(Post.carousel == 0).all()
+    # Post_thumb = first image from the uploads to use as a thumbnail
+    post_thumb = []
+    for i in post_info:
+        hold = str_to_list(i.img_path)
+        post_thumb.append(hold[0])
+
+    return render_template('recipes.html', post_info = post_info, user=current_user, post_thumb = post_thumb)
