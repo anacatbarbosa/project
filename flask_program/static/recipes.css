@@ -54,3 +54,8 @@ form button {
     box-shadow: 2px 2px 2px lightgray;
     margin: 5px;
 }
+
+.col-sm img {
+    height: 70%;
+    width: 80%;
+}
