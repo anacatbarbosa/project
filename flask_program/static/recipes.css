@@ -49,10 +49,19 @@ form button {
     text-align: center;
 }
 
+.row {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .col-sm {
     background-color: white;
     box-shadow: 2px 2px 2px lightgray;
+    flex-basis: 30%;
+    flex-grow: 1;
     margin: 5px;
+    max-width: 30%;
+    height: 20vw;
 }
 
 .col-sm img {

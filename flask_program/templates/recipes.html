@@ -33,18 +33,12 @@
     <hr>
     <div class="container posts">
         <div class="row">
+        {% for post in post_info %}
           <div class="col-sm">
-            Receita 1
-            <img src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dessert-main-image-molten-cake-0fbd4f2.jpg" alt="#">
+            <h4>{{ post.title }}</h4>
+            <img src="{{ post_thumb[loop.index - 1] }}" alt="#">
           </div>
-          <div class="col-sm">
-            Receita 2
-            <img src="#" alt="#">
-          </div>
-          <div class="col-sm">
-            Receita 3
-            <img src="#" alt="#">
-          </div>
+        {% endfor %}
         </div>
       </div>
 
