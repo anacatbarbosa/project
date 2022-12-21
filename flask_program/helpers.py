@@ -127,10 +127,13 @@ def json_to_js(path, posts):
     # If the len(path) is lower or iqual to 0, it's not necessery to show more, so it doesn't change the json file
     if len(path) == 0:
         return None
-    with open('flask_program/static/posts.json', 'r') as jf: 
-        data = json.load(jf)
-    
+
     # Posts must have a id, img_path and title
+    data = {
+        "path":[],
+        "titles":[],
+        "post_id":[]
+    }
     counter = 0
     path_to_add = []
     titles_to_add = []
@@ -146,6 +149,5 @@ def json_to_js(path, posts):
     data['titles'] = titles_to_add
     data['post_id'] = id_to_add 
 
-    with open('flask_program/static/posts.json', 'w') as jf: 
-        json.dump(data, jf,indent=4)
-    return 0 
+    # Return a dict to the js file.
+    return data
