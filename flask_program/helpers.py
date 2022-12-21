@@ -1,3 +1,4 @@
+import json
 import re
 
 from flask import flash
@@ -117,3 +118,34 @@ def str_to_list(string):
             quote_two = 0
 
     return list_to_return
+
+
+# This function will write, or edit a json file to give the infinty scroll the necessary informations
+def json_to_js(path, posts):
+    # Open and reading what is at json file to find how many times we already called the function infinity scroll. The variable counter inform what is the last image we have stoped at,
+    # the counter always starts at 9, the standard output recipes if the user scrolldown we show more 6.
+    # If the len(path) is lower or iqual to 0, it's not necessery to show more, so it doesn't change the json file
+    if len(path) == 0:
+        return None
+    with open('flask_program/static/posts.json', 'r') as jf: 
+        data = json.load(jf)
+    
+    # Posts must have a id, img_path and title
+    counter = 0
+    path_to_add = []
+    titles_to_add = []
+    id_to_add = []
+
+    for post in posts:
+        path_to_add.append(path[counter])
+        titles_to_add.append(post.title)
+        id_to_add .append(post.id)
+        counter += 1
+
+    data['path'] = path_to_add
+    data['titles'] = titles_to_add
+    data['post_id'] = id_to_add 
+
+    with open('flask_program/static/posts.json', 'w') as jf: 
+        json.dump(data, jf,indent=4)
+    return 0 

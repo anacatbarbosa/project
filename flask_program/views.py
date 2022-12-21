@@ -7,7 +7,7 @@ from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
 
 from . import db
-from .helpers import allowed_file, str_to_list
+from .helpers import allowed_file, json_to_js, str_to_list
 from .models_database import Post, User
 
 #Blueprint allow to code the views, or @app.routes, in multiple files
@@ -15,6 +15,7 @@ from .models_database import Post, User
 views = Blueprint('views', __name__) #setting the Blueprint variable name.
 upload_folder = 'flask_program/static/uploaded_files'# path to the uploaded folder to save the files. Path from main.py to upoladed_files
 file_to_html =  '../static/uploaded_files' #path to pass to html file, this path + filename will inform the url to the html go take it
+number_test = 0
 
 @views.route('/')
 def index():
@@ -71,4 +72,6 @@ def recipes():
         hold = str_to_list(i.img_path)
         post_thumb.append(hold[0])
 
+    json_to_js(post_thumb, post_info)
+    
     return render_template('recipes.html', post_info = post_info, user=current_user, post_thumb = post_thumb)
