@@ -6,7 +6,7 @@
     <p>This is where you will find every contribution from our users, our Recipe's List.<br>
         Feel free to add your recipes and share your knowledge with the world!</p>
     {% if user.is_authenticated %}
-        <form action="/recipes" method="post" enctype="multipart/form-data">
+        <form class="generalForm" action="/recipes" method="post" enctype="multipart/form-data">
             <div class="form-group row">
                 <label for="recipe_title" class="col-sm-2 col-form-label">Recipe Title</label>
                 <div class="col-sm-10">
@@ -33,11 +33,12 @@
         </form>
     {% endif %}
     <hr>
-    <div class="container posts">
-        <div class="row" id="infinity">
-        <!-- Infinity scroll using index.js-->
+    <form class="infinityRecipes" action="/" method="get">
+        <div class="container posts">
+            <div class="row" id="infinity">
+            <!-- Infinity scroll using index.js-->
+            </div>
         </div>
-      </div>
-
+    </form>
 {% endblock %}
 {% block script %}<script src="static/index.js"></script> {% endblock %}

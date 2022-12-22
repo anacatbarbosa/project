@@ -14,19 +14,19 @@ hr {
     margin: 25px;
 }
 
-form {
+.generalForm {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     width: 50%;
     margin: auto;
     text-align: center;
 }
 
-form div {
+.generalForm div {
     margin: auto;
     text-align: center;
 }
 
-form button {
+.generalForm button {
     background-color: #FF8099 !important;
     border-color: #FF8099 !important;
     margin: auto;
@@ -56,15 +56,23 @@ form button {
 
 .col-sm {
     background-color: white;
+    border: none;
+    border-radius: 10px;
     box-shadow: 2px 2px 2px lightgray;
     flex-basis: 30%;
     flex-grow: 1;
-    margin: 5px;
+    margin: 10px;
     max-width: 30%;
     height: 20vw;
+}
+
+.col-sm h4 {
+    font-size: 27px;
+    text-shadow: 2px 2px lightpink;
 }
 
 .col-sm img {
     height: 70%;
     width: 80%;
+    margin-bottom: 10px;
 }

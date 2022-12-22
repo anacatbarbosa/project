@@ -3,7 +3,7 @@
 {% block title %}Login{% endblock %}
 {% block main %}
 <h2>Welcome back!</h2>
-<form action="/login" method="post">
+<form class="generalForm" action="/login" method="post">
     <div class="form-group row">
       <label for="email" class="col-sm-2 col-form-label">E-mail</label>
       <div class="col-sm-10">
@@ -24,7 +24,7 @@
   </form>
 <hr>
 <h2>Don't have an account? Register below!</h2>
-<form action="/register" method="post">
+<form class="generalForm" action="/register" method="post">
     <div class="form-group row">
         <label for="username" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
