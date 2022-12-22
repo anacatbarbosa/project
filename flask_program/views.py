@@ -76,7 +76,7 @@ def recipes():
 @views.route('/recipes/<string:post_title>/<string:post_id>', methods=['GET','POST'])
 def recipes_pag(post_title, post_id):
     
-    return render_template('recipe_details.html', user=current_user)
+    return render_template('recipe_details.html', user=current_user, pag_title=str(post_title))
 
 
 @views.route('/get_posts', methods=['POST'])
