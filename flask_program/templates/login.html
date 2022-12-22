@@ -1,5 +1,5 @@
 {% extends "index.html" %}
-{% block link %}<link rel="stylesheet" href="static/login.css">{% endblock %}
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">{% endblock %}
 {% block title %}Login{% endblock %}
 {% block main %}
 <h2>Welcome back!</h2>
@@ -56,5 +56,5 @@
     </div>
   </form>
   <hr>
-  <img src="static/uploaded_files/cupcake-2097943_640.png" alt="Three Cupcakes" id="cupcakes">
+  <img src="{{ url_for('static', filename='uploaded_files/cupcake-2097943_640.png') }}" alt="Three Cupcakes" id="cupcakes">
 {% endblock %}

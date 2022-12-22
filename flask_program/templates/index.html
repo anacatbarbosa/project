@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="static/style.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         {% block link %}{% endblock %}
         <title>{% block title %} Com amor, Graça {% endblock %}</title>
     </head>
@@ -21,10 +21,10 @@
                 <nav class="navbar navbar-expand-lg pink-nav">
                     <div class="container-fluid">
                       <a class="navbar-brand" href="{{ url_for('views.index') }}">
-                        <img src="/static/logo2.png" alt="Brand Logo" width="60" height="70">
+                        <img src="{{ url_for('static', filename='logo2.png') }}" alt="Brand Logo" width="60" height="70">
                       </a>
                       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"><img src="static/logomenu.png" width="35" height="35" alt="Menu Brand Logo"></span>
+                        <span class="navbar-toggler-icon"><img src="{{ url_for('static', filename='logomenu.png') }}" width="35" height="35" alt="Menu Brand Logo"></span>
                       </button>
                       <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">

@@ -9,19 +9,19 @@ hr {
     margin: 25px;
 }
 
-.generalForm {
+form {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     width: 50%;
     margin: auto;
     text-align: center;
 }
 
-.generalForm div {
+form div {
     margin: auto;
     text-align: center;
 }
 
-.generalForm button {
+form button {
     background-color: #FF8099 !important;
     border-color: #FF8099 !important;
     margin: auto;
