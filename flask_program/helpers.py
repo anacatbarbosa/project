@@ -82,7 +82,7 @@ def check_errors(name, email, password1, password2):
 def allowed_file(filename): 
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# func to recieve a list in a str format and return as a true list, ex: recive a str - "['teste', 'oi']" and return a list - ['teste', 'oi']
+# func to receive a list in a str format and return as a true list, ex: receive a str - "['teste', 'oi']" and return a list - ['teste', 'oi']
 # if no str pass return a empty list, if an incorrect format value is pass return none
 def str_to_list(string):
     list_to_return = []
@@ -95,7 +95,7 @@ def str_to_list(string):
     if string == '' or string == '[]':
         return list_to_return
     
-    # Going throught the string to check where is the '[', ']' and the itens inside of it
+    # Going through the string to check where is the '[', ']' and the items inside of it
 
     quote_one = 0 # check if the forloop found the first quote, after the first quote it will add all to the item_to_append
     quote_two = 0 # check if the forloop found the second quote, after the second quote it will add the item_to_append to the list_to_returns
@@ -128,7 +128,7 @@ def json_to_js(path, posts):
     if len(path) == 0:
         return None
 
-    # Posts must have a id, img_path and title
+    # Posts must have an id, img_path and title
     data = {
         "path":[],
         "titles":[],
