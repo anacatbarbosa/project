@@ -47,9 +47,12 @@ def recipes():
         if description == "":
             flash('Please insert a description, we need to know how to cook that delicious recipe!', category='error')
             return redirect(url_for('views.recipes'))
-            
+        
+        # Store all the file names from user
         file_names = []
+        # Store the path to use into the html files to find the img
         path_html = []
+        # Go through the files to check if the file name is sercure, and save all the images at static/uploaded_filles 
         for file in files:
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
@@ -61,11 +64,20 @@ def recipes():
                 flash('Allowed image types are -> png, jpg, jpeg', category='error')
                 return redirect(url_for('views.recipes'))
 
+        # add all the posts informations to the database
         post = Post(carousel=0, description=description, filename=str(file_names), img_path=str(path_html), title=title, user_id=current_user.get_id()) 
         db.session.add(post)
         db.session.commit()
     
     return render_template('recipes.html', user=current_user)
+
+
+# This route will receive the information of which recipe the user clicked on and show the recipe, it will have all the images uploaded and the description of it
+@views.route('/recipes/<string:post_title>/<string:post_id>', methods=['GET','POST'])
+def recipes_pag(post_title, post_id):
+    
+    return 'Esse teste funciona ' + str(post_title) + ' id = ' + str(post_id)
+
 
 @views.route('/get_posts', methods=['POST'])
 def get_posts():

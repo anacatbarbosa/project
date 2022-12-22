@@ -29,10 +29,11 @@ async function loadImages (already_uploaded, numImages = firstRecipes) {
     while (i < numImages && i < total_posts) {
         const buttonEl = document.createElement('button')
         buttonEl.classList.add('col-sm')
+        formation_string = "/recipes/"+post_details['titles'][i]+"/"+post_details['post_id'][i]
+        buttonEl.formAction = formation_string
         buttonEl.innerHTML = `
             <h4>${post_details['titles'][i]}</h4>
             <img src=${post_details['path'][i]}>
-            <input type="hidden" name="post_id" value=${post_details['post_id'][i]}>
         `
         container.appendChild(buttonEl)
         i++;
