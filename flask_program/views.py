@@ -2,8 +2,8 @@
 import json
 import os
 
-from flask import (Blueprint, flash, jsonify, redirect, render_template, request,
-                   session, url_for)
+from flask import (Blueprint, flash, jsonify, redirect, render_template,
+                   request, session, url_for)
 from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
 
@@ -65,6 +65,11 @@ def recipes():
         db.session.add(post)
         db.session.commit()
     
+    return render_template('recipes.html', user=current_user)
+
+@views.route('/get_posts', methods=['POST'])
+def get_posts():
+
     # Post_info = recipes titles and descriptions
     post_info = Post.query.filter(Post.carousel == 0).all()
     # Post_thumb = first image from the uploads to use as a thumbnail
@@ -73,18 +78,6 @@ def recipes():
         hold = str_to_list(i.img_path)
         post_thumb.append(hold[0])
 
-    json_to_js(post_thumb, post_info)
-    
-    return render_template('recipes.html', post_info = post_info, user=current_user, post_thumb = post_thumb)
-
-@views.route('/get_posts', methods=['POST'])
-def get_posts():
-    post_info = Post.query.filter(Post.carousel == 0).all()
-    # Post_thumb = first image from the uploads to use as a thumbnail
-    post_thumb = []
-    for i in post_info:
-        hold = str_to_list(i.img_path)
-        post_thumb.append(hold[0])
-
     data = json_to_js(post_thumb, post_info)
+    # Returns to JS file.
     return jsonify(data)
