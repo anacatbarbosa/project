@@ -1,6 +1,7 @@
 #File to code @app.route files, but not authentication files routes, such as login and register.
 import json
 import os
+import random
 
 from flask import (Blueprint, flash, jsonify, redirect, render_template,
                    request, session, url_for)
@@ -16,14 +17,29 @@ from .models_database import Post, User
 views = Blueprint('views', __name__) #setting the Blueprint variable name.
 upload_folder = 'flask_program/static/uploaded_files'# path to the uploaded folder to save the files. Path from main.py to upoladed_files
 file_to_html =  '../static/uploaded_files' #path to pass to html file, this path + filename will inform the url to the html go take it
-number_test = 0
 
 @views.route('/')
 def index():
 
-    carousel = Post.query.filter(Post.carousel == 1).all()
-    return render_template('index.html', posts=carousel, user=current_user)
+    # Max number of images to show randomic in carousel
+    max_carousel_display = 5
+    # Getting post informations
+    carousel = Post.query.filter(Post.carousel == 0).all()
+    # Selecting randons posts to display
+    random_amount = len(carousel)
+    # List to store the path to the carousel images
+    carousel_path = []
 
+    if random_amount >= max_carousel_display:
+        random_posts = random.sample(range(random_amount), max_carousel_display)
+    else:
+        random_posts = random.sample(range(random_amount), random_amount)
+
+    for i in random_posts:
+        hold = str_to_list(carousel[i].filename)
+        carousel_path.append(hold[0])
+    
+    return render_template('index.html', carousel_highlights=carousel_path, user=current_user)
 
 @views.route('/settings')
 @login_required
