@@ -76,7 +76,10 @@ def recipes():
 @views.route('/recipes/<string:post_title>/<string:post_id>', methods=['GET','POST'])
 def recipes_pag(post_title, post_id):
     post = Post.query.filter(Post.id == post_id).first()
-    post_path = str_to_list(post.img_path)
+    post_path = str_to_list(post.filename)
+    
+    for i in post_path:
+        print (i)
     return render_template('recipe_details.html', user=current_user, page_title=str(post_title), carouselimg = post_path, post_info = post)
 
 
