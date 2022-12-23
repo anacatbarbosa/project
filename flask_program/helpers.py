@@ -3,6 +3,9 @@ import re
 
 from flask import flash
 
+from . import db
+from .models_database import User
+
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 def check_email(email): # checking if the e-mail is valid using re, https://docs.python.org/3/library/re.html
@@ -132,17 +135,23 @@ def json_to_js(path, posts):
     data = {
         "path":[],
         "titles":[],
-        "post_id":[]
+        "post_id":[],
+        "user_id": [],
+        "adm": []
     }
     counter = 0
     path_to_add = []
     titles_to_add = []
     id_to_add = []
+    user_id = []
+    adm = []
 
     for post in posts:
         path_to_add.append(path[counter])
         titles_to_add.append(post.title)
-        id_to_add .append(post.id)
+        id_to_add.append(post.id)
+        user_id.append(post.user_id)
+        #hold = User.query.filter(User.id == post.user_id).first()
         counter += 1
 
     data['path'] = path_to_add

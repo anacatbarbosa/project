@@ -19,7 +19,7 @@ class Post(db.Model, UserMixin):
 
 class User(db.Model, UserMixin): #user information
     id = db.Column(db.Integer, primary_key=True)
-    adm_bool = db.Column(db.Integer) #For security reasons an Admin can only be added manually at the db. One ADM can add another ADM via website, otherwise it's not possible to create a adm account via register. ADM = 0 means it's adm, ADM = 1 means it's adm
+    adm_bool = db.Column(db.Integer) #For security reasons an Admin can only be added manually at the db. One ADM can add another ADM via website, otherwise it's not possible to create a adm account via register. ADM = 0 means it's not an adm, ADM = 1 means it's adm
     email = db.Column(db.Text, unique=True, nullable=False)
     password = db.Column(db.Text, nullable=False)
     name = db.Column(db.Text, nullable=False)

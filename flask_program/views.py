@@ -75,8 +75,9 @@ def recipes():
 # This route will receive the information of which recipe the user clicked on and show the recipe, it will have all the images uploaded and the description of it
 @views.route('/recipes/<string:post_title>/<string:post_id>', methods=['GET','POST'])
 def recipes_pag(post_title, post_id):
-    
-    return render_template('recipe_details.html', user=current_user, page_title=str(post_title))
+    post = Post.query.filter(Post.id == post_id).first()
+    post_path = str_to_list(post.img_path)
+    return render_template('recipe_details.html', user=current_user, page_title=str(post_title), carouselimg = post_path, post_info = post)
 
 
 @views.route('/get_posts', methods=['POST'])

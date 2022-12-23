@@ -21,6 +21,7 @@ let scroll_counter = 0;
    post_details contains path, titles and post_id*/
 async function loadImages (already_uploaded, numImages = firstRecipes) {
     const post_details = await fetchData()
+    console.log(post_details)
     const total_posts = post_details['path'].length /* counts every post */
     let i = already_uploaded;
     numImages += already_uploaded
