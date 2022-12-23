@@ -56,7 +56,7 @@ def recipes():
         for file in files:
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
-                file_names.append(filename)
+                file_names.append('uploaded_files/' + filename)
                 path_save = os.path.join(upload_folder, filename)
                 file.save(path_save)
                 path_html.append(os.path.join(file_to_html, filename))
