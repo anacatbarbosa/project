@@ -1,0 +1,32 @@
+.containerRecipes {
+    display: flex;
+    width: 100%;
+}
+
+.carouselSize {
+    box-shadow: 1px 2px 10px rgb(116, 116, 116);
+    width: 50%;
+}
+
+.carouselRecipes-item {
+    height: 100%;
+}
+
+.carouselRecipes-item img {
+    height: 100%;
+}
+
+.recipeDetails {
+    word-wrap: break-word;
+    width: 50%;
+}
+
+pre {
+    white-space: pre-wrap;       /* css-3 */
+    white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    width: 99%;
+   }
+

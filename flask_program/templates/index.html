@@ -79,19 +79,19 @@
           {% endwith %}
           {% block main %}
             <h1>Receitas em Destaque &#127856;</h1>
-            <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-              <div class="carousel-inner">
+            <div id="carouselHighlights" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner carouselHighlights">
                 {% for post in posts %}
-                  <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
-                    <img src="{{ post.img_path }}" class="d-block" alt="...">
+                  <div class="carousel-item carouselHighlights-item {% if loop.index == 1 %} active {% endif %}">
+                    <img src="{{ post.img_path }}" class="d-block w-100" alt="...">
                   </div>
-                {% endfor %}
+                 {% endfor %} 
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselHighlights" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselHighlights" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>

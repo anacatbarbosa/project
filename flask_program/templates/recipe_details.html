@@ -2,5 +2,36 @@
 {% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='recipe_details.css') }}">{% endblock %}
 {% block title %}{{ page_title }}{% endblock %}
 {% block main %}
-    
+    <!-- carouselimg (img path list for each recipe), post_info.title (recipe title), post_info.description (recipe description) 
+         post_info.user_id and post_info.date (date and time of post) -->
+    <div class="containerRecipes">
+        <div class="carouselSize">
+            <div id="carouselRecipes" class="carousel slide" data-bs-ride="true">
+                <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselRecipes" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselRecipes" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselRecipes" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner carouselRecipes">
+                    {% for image in carouselimg %}
+                        <div class="carousel-item carouselRecipes-item {% if loop.index == 1 %} active {% endif %}">
+                            <img src="{{ url_for('static', filename='uploaded_files/' + image) }}" class="d-block w-100" alt="{{ post_info.title }}">
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselRecipes" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselRecipes" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="recipeDetails">
+            <h1>{{ post_info.title }}</h1>
+            <pre>{{ post_info.description }}</pre>
+        </div>
+    </div>      
 {% endblock %}
