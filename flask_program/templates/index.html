@@ -81,9 +81,9 @@
             <h1>Receitas em Destaque &#127856;</h1>
             <div id="carouselHighlights" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-inner carouselHighlights">
-                {% for post in posts %}
+                {% for image in carousel_highlights %}
                   <div class="carousel-item carouselHighlights-item {% if loop.index == 1 %} active {% endif %}">
-                    <img src="{{ post.img_path }}" class="d-block w-100" alt="...">
+                    <img src="{{ url_for('static', filename='uploaded_files/' + image) }}" class="d-block w-100" alt="...">
                   </div>
                  {% endfor %} 
               </div>
