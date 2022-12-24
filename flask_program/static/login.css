@@ -10,7 +10,8 @@ hr {
 }
 
 form {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
     width: 50%;
     margin: auto;
     text-align: center;
@@ -24,6 +25,7 @@ form div {
 form button {
     background-color: #FF8099 !important;
     border-color: #FF8099 !important;
+    font-weight: bold !important;
     margin: auto;
     text-align: center;
 }
