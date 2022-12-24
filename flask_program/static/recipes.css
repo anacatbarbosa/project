@@ -97,8 +97,9 @@ hr {
         width: 100%;
     }
     #image {
-        width: 100%;
         margin-bottom: 20px;
+        margin-left: 10px;
+        width: 100%;
     }
     .col-sm {
         border-radius: 10px;
