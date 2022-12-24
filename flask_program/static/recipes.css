@@ -82,3 +82,38 @@ hr {
     width: 80%;
     margin-bottom: 10px;
 }
+
+@media only screen and (max-width: 768px) {
+    p {
+        margin-inline: 30px;
+    }
+    .generalForm {
+        padding-right: 10px;
+        width: 100%;
+    }
+    #image {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .col-sm {
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px lightgray;
+        flex-basis: 80%;
+        flex-grow: 1;
+        margin: 10px;
+        max-width: 80%;
+        height: 50vw;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .col-sm {
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px lightgray;
+        flex-basis: 80%;
+        flex-grow: 1;
+        margin: 10px;
+        max-width: 80%;
+        height: 70vw;
+    }
+}
