@@ -37,3 +37,33 @@ pre {
     text-align: center;
    }
 
+/* Responsive mode bellow*/
+
+@media only screen and (max-width: 768px) {
+    .containerRecipes {
+        flex-direction: column;
+    }
+    .carouselSize{
+        width: 100%;
+        height: 70vh;
+    }
+    .carouselRecipes-item {
+        height: 70vh;
+    }
+    
+    .carouselRecipes-item img {
+        max-width:70vh;
+        margin-inline: auto;
+        height: 70vh;
+    }
+    .recipeDetails {
+        width: 100%;
+    }
+    pre {
+        width: 90%;
+       }
+}
+
+@media only screen and (max-width: 480px) {
+
+}

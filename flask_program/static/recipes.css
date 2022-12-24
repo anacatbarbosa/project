@@ -85,6 +85,8 @@ hr {
     margin-bottom: 10px;
 }
 
+/* Responsive mode bellow*/
+
 @media only screen and (max-width: 768px) {
     p {
         margin-inline: 30px;
