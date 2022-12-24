@@ -39,7 +39,7 @@ pre {
 
 /* Responsive mode bellow*/
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 860px) {
     .containerRecipes {
         flex-direction: column;
     }
@@ -57,13 +57,7 @@ pre {
         height: 70vh;
     }
     .recipeDetails {
-        width: 100%;
-    }
-    pre {
         width: 90%;
-       }
-}
-
-@media only screen and (max-width: 480px) {
-
+        margin: auto;
+    }
 }

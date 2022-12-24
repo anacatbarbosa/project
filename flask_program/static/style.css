@@ -126,3 +126,30 @@ main h1 {
     color:#aaa;
     margin-bottom:0;
   }
+
+  @media only screen and (max-width: 991px){
+    .ms-auto{
+        margin-left: 0 !important;
+    }
+    .carouselHighlights-item img {
+        max-width: 100%;
+      }
+  } 
+
+  @media only screen and (max-width: 590px){
+    #carouselHighlights {
+        width: 95%;
+        height: 60vh;
+        margin: 25px auto;
+      }
+      
+      .carouselHighlights, .carouselHighlights-item {
+        height: 100%;
+      }
+      
+      .carouselHighlights-item img {
+        display: block;
+        margin-inline: auto;
+        height: 100%;
+      }
+  } 

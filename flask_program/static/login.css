@@ -46,3 +46,17 @@ form button {
     height: 250px;
     width: 400px;
 }
+
+/* Responsive mode bellow*/
+
+@media only screen and (max-width: 926px) {
+    form {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 584px) {
+    form {
+        width: 95%;
+    }
+}

@@ -77,13 +77,24 @@ hr {
     color: #FF8099;
     font-size: 20px;
     font-weight: bold;
-    text-decoration: underline;
+    margin-bottom: 0px;
 }
 
 .col-sm img {
     height: 80%;
     width: 80%;
     margin-bottom: 10px;
+    box-shadow: 0px 0px 3px black;
+}
+
+.hrSize {
+    display: inline-block;
+}
+
+.hrTitle {
+    margin: 0px 0px 8px 0px !important;
+    background-color: #f90032;
+    height: 1px;
 }
 
 /* Responsive mode bellow*/

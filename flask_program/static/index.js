@@ -33,7 +33,10 @@ async function loadImages (already_uploaded, numImages = firstRecipes) {
         formation_string = "/recipes/"+post_details['titles'][i]+"/"+post_details['post_id'][i]
         buttonEl.formAction = formation_string
         buttonEl.innerHTML = `
-            <h4>${post_details['titles'][i]}</h4>
+            <div class="hrSize">
+                <h4 class="h4Title">${post_details['titles'][i]}</h4>
+                <hr class="hrTitle">
+            </div>
             <img src=${post_details['path'][i]}>
         `
         container.appendChild(buttonEl)
