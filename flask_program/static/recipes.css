@@ -1,5 +1,6 @@
 h2 {
     color: #FF8099;
+    font-weight: bold;
     margin: 15px;
     text-align: center;
     text-shadow: 2px 2px lightgray;
@@ -74,11 +75,12 @@ hr {
 
 .col-sm h4 {
     color: #FF8099;
-    font-size: 27px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .col-sm img {
-    height: 70%;
+    height: 80%;
     width: 80%;
     margin-bottom: 10px;
 }

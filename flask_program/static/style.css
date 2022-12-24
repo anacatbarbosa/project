@@ -1,6 +1,6 @@
 .pink-nav {
     background-color: #F7D5DC !important;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .nav-item {
@@ -26,29 +26,33 @@
 
 body {
     background-color: #f5f5f5;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
 }
 
 .alert {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
   margin: 0;
 }
 
 main {
     min-height: 100vh;
     background-color: #f5f5f5;
+    font-weight: bold;
 }
 
 main h1 {
+  color: #FF8099;
+  font-weight: bold;
   margin-top: 15px;
   text-align: center;
-  color: #FF8099;
   text-shadow: 2px 2px lightgray;
 }
 
 #carouselHighlights {
   width: 60vw;
-  height: 50vh;
+  height: 70vh;
   margin: 25px auto;
 }
 
@@ -57,9 +61,12 @@ main h1 {
 }
 
 .carouselHighlights-item img {
-  height: 100%;
-  margin: auto;
-  border-radius: 10px;
+  display: block;
+  margin-inline: auto;
+  max-height: 70vh;
+  max-width: 90vw;
+  height: auto;
+  width: auto;
 }
 
 .footer-basic {
@@ -117,7 +124,7 @@ main h1 {
   .footer-basic .copyright {
     margin-top:15px;
     text-align:center;
-    font: size 15px;
+    font-size: 15px;
     color:#aaa;
     margin-bottom:0;
   }
