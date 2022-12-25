@@ -98,6 +98,14 @@ hr {
 }
 
 /* Responsive mode bellow*/
+@media only screen and (max-width: 1009px) {
+    .col-sm {
+        flex-basis: 40%;
+        margin: 10px;
+        max-width: 40%;
+        height: 30vw;
+    }
+}
 
 @media only screen and (max-width: 768px) {
     p {
@@ -113,10 +121,7 @@ hr {
         width: 100%;
     }
     .col-sm {
-        border-radius: 10px;
-        box-shadow: 2px 2px 2px lightgray;
         flex-basis: 80%;
-        flex-grow: 1;
         margin: 10px;
         max-width: 80%;
         height: 50vw;
