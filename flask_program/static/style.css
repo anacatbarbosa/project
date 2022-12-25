@@ -136,10 +136,18 @@ main h1 {
       }
   } 
 
+  @media only screen and (max-width: 768px){
+    #carouselHighlights {
+        width: 75%;
+        height: 70vh;
+        margin: 25px auto;
+      }
+  }
+
   @media only screen and (max-width: 590px){
     #carouselHighlights {
         width: 95%;
-        height: 60vh;
+        height: 67vh;
         margin: 25px auto;
       }
       
