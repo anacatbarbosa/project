@@ -2,5 +2,19 @@
 {% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">{% endblock %}
 {% block title %}About{% endblock %}
 {% block main %}
+    <h1>About Us</h1>
+    <div class="aboutUs">
+        <p>If you clicked here, you're probably wondering who is behind this website and/or the reason why it even exists.<br>
+            You've come to the right place!</p>
+        <p>Despite it being a cooking website with recipes everyone can read and add to, this website's idea was born during our final project for <span>CS50</span> (a Computer Science course from Harvard).<br>
+            But you might be asking yourself "why a cooking website?" and "who are these people anyway?"</p>
 
+        <img src="{{ url_for('static', filename='static_imgs/IMG_0324.JPEG') }}" alt="Creators Picture" id="creators">
+        <p>We're Leo and Cat (or Leonardo and Catarina if you'd prefer). <br>
+            We entered <span>CS50</span> together, both afraid we wouldn't even be able to finishe the course. Well here we are!</p>
+        <p>Basically Leo loves programming (more on the back-end side) and introduced me (you guessed who's writing this) to the programming world, selling it well enough for me to challenge myself into this path aswell.</p>
+        <p>The fact we've chosen a cooking website is more on my part, since I loved cooking since I was a kid, and I was taught mostly by my aunt who's no longer with us.<br>
+            You can read <span>'Com Amor, Graça'</span> on our logo which means <span>'With Love, Grace'</span>. Grace was my aunt's name, and this is our website's name since it only exists today thanks to her and all she ever taught me.</p>
+        <p>There's still a long way ahead, but we hope you enjoy your stay!</p>
+    </div>
 {% endblock %}

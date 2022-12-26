@@ -1,0 +1,23 @@
+.aboutUs {
+    
+}
+
+#creators {
+    border-radius: 10px;
+    box-shadow: 2px 2px lightgray;
+    float: left;
+    height: 400px;
+    margin: 50px;
+    width: 300px;
+}
+
+p {
+    margin: 20px;
+    text-align: justify;
+}
+
+p span {
+    color: #FF8099;
+    font-weight: bold;
+    text-decoration: underline;
+}
