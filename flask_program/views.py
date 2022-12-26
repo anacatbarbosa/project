@@ -110,12 +110,14 @@ def get_posts():
 
     # Post_info = recipes titles and descriptions
     post_info = Post.query.filter(Post.carousel == 0).all()
+    id = current_user.get_id()
+    user_info = User.query.filter(User.id == id).first()
     # Post_thumb = first image from the uploads to use as a thumbnail
     post_thumb = []
     for i in post_info:
         hold = str_to_list(i.img_path)
         post_thumb.append(hold[0])
 
-    data = json_to_js(post_thumb, post_info)
+    data = json_to_js(post_thumb, post_info, user_info.id, user_info.adm_bool)
     # Returns to JS file.
     return jsonify(data)

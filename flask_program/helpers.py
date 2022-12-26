@@ -126,7 +126,7 @@ def str_to_list(string):
 
 
 # This function will write, or edit a json file to give the infinty scroll the necessary informations
-def json_to_js(path, posts):
+def json_to_js(path, posts, current_user_id, adm_bool):
     # Open and reading what is at json file to find how many times we already called the function infinity scroll. The variable counter inform what is the last image we have stoped at,
     # the counter always starts at 9, the standard output recipes if the user scrolldown we show more 6.
     # If the len(path) is lower or iqual to 0, it's not necessery to show more, so it doesn't change the json file
@@ -146,7 +146,6 @@ def json_to_js(path, posts):
     titles_to_add = []
     id_to_add = []
     user_id = []
-    adm = []
 
     for post in posts:
         path_to_add.append(path[counter])
@@ -158,7 +157,10 @@ def json_to_js(path, posts):
 
     data['path'] = path_to_add
     data['titles'] = titles_to_add
-    data['post_id'] = id_to_add 
+    data['post_id'] = id_to_add
+    data['user_id'] = user_id
+    data['current_user'] = current_user_id
+    data['adm'] = adm_bool
 
     # Return a dict to the js file.
     return data

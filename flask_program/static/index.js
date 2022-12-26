@@ -21,7 +21,6 @@ let scroll_counter = 0;
    post_details contains path, titles and post_id*/
 async function loadImages (already_uploaded, numImages = firstRecipes) {
     const post_details = await fetchData()
-    console.log(post_details)
     const total_posts = post_details['path'].length /* counts every post */
     let i = already_uploaded;
     numImages += already_uploaded
@@ -32,13 +31,29 @@ async function loadImages (already_uploaded, numImages = firstRecipes) {
         buttonEl.classList.add('col-sm')
         formation_string = "/recipes/"+post_details['titles'][i]+"/"+post_details['post_id'][i]
         buttonEl.formAction = formation_string
-        buttonEl.innerHTML = `
-            <div class="hrSize">
-                <h4 class="h4Title">${post_details['titles'][i]}</h4>
-                <hr class="hrTitle">
-            </div>
-            <img src=${post_details['path'][i]}>
-        `
+        console.log(post_details)
+        if (post_details['user_id'][i] == post_details['current_user'] || post_details['adm'] == 1)
+        {
+            buttonEl.innerHTML = `
+                <button type="button" class="close">
+                    <span aria-hidden="true">&times</span>
+                </button>
+                <div class="hrSize">
+                    <h4 class="h4Title">${post_details['titles'][i]}</h4>
+                    <hr class="hrTitle">
+                </div>
+                <img src=${post_details['path'][i]}>
+            `
+        }
+        else{
+            buttonEl.innerHTML = `
+                <div class="hrSize">
+                    <h4 class="h4Title">${post_details['titles'][i]}</h4>
+                    <hr class="hrTitle">
+                </div>
+                <img src=${post_details['path'][i]}>
+            `
+        }
         container.appendChild(buttonEl)
         i++;
     }

@@ -75,6 +75,8 @@ hr {
 
 .col-sm h4 {
     color: #FF8099;
+    overflow-x: auto;
+    white-space: nowrap;
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 0px;
@@ -89,6 +91,7 @@ hr {
 
 .hrSize {
     display: inline-block;
+    max-width: 100%;
 }
 
 .hrTitle {

@@ -1,3 +1,14 @@
+::-webkit-scrollbar{
+    background-color: #f7d5dc6e;
+    border-radius: 10px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #F7D5DC;
+    border-radius: 10px;
+}
+
 .pink-nav {
     background-color: #F7D5DC !important;
     font-size: 20px;
