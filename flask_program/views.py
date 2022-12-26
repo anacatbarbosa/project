@@ -41,6 +41,12 @@ def index():
     
     return render_template('index.html', carousel_highlights=carousel_path, user=current_user)
 
+
+@views.route('/about')
+def about():
+    return (render_template('about.html', user=current_user))
+
+
 @views.route('/settings')
 @login_required
 def settings():
