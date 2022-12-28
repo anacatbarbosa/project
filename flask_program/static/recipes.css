@@ -73,6 +73,7 @@ hr {
     height: 20vw;
 }
 
+
 .col-sm h4 {
     color: #FF8099;
     overflow-x: auto;
@@ -82,7 +83,18 @@ hr {
     margin-bottom: 0px;
 }
 
+.col-sm.withScroll h4{
+    font-size: 18px;
+}
+
 .col-sm img {
+    height: 80%;
+    width: 80%;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 3px black;
+}
+
+.col-sm.withScroll img {
     height: 80%;
     width: 80%;
     margin-bottom: 10px;

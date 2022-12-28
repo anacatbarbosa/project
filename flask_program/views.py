@@ -98,6 +98,9 @@ def recipes():
 @views.route('/recipes/<string:post_title>/<string:post_id>', methods=['GET','POST'])
 def recipes_pag(post_title, post_id):
     post = Post.query.filter(Post.id == post_id).first()
+    if post == None:
+        return redirect(url_for('views.recipes'))
+
     post_path = str_to_list(post.filename)
     
     for i in post_path:
@@ -118,6 +121,21 @@ def get_posts():
         hold = str_to_list(i.img_path)
         post_thumb.append(hold[0])
 
-    data = json_to_js(post_thumb, post_info, user_info.id, user_info.adm_bool)
+    if user_info == None:
+        data = json_to_js(post_thumb, post_info, None, None)
+    else:
+        data = json_to_js(post_thumb, post_info, user_info.id, user_info.adm_bool)
     # Returns to JS file.
     return jsonify(data)
+
+@views.route('/delete_post', methods=['POST'])
+def delete_post():
+    post = json.loads(request.data)
+    postId = post['postId']
+    post = Post.query.get(postId)
+    if post:
+        if post.user_id == current_user.id:
+            db.session.delete(post)
+            db.session.commit()
+
+    return jsonify({})

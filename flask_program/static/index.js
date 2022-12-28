@@ -15,6 +15,17 @@ async function fetchData(){
     return data;
 }
 
+/* Function to the delete the post if the user or the adm click on it*/
+function deletePost(postId){
+    console.log("ENTREI AQUI")
+    fetch("/delete_post", {
+        method: "POST",
+        body:JSON.stringify({postId: postId}),
+    }).then((_res)=>{
+        window.location.href = "/recipes";
+    });
+}
+
 let scroll_counter = 0;
 
 /* function to load numImages to show on #infinity div at recipes.html 
@@ -31,11 +42,10 @@ async function loadImages (already_uploaded, numImages = firstRecipes) {
         buttonEl.classList.add('col-sm')
         formation_string = "/recipes/"+post_details['titles'][i]+"/"+post_details['post_id'][i]
         buttonEl.formAction = formation_string
-        console.log(post_details)
-        if (post_details['user_id'][i] == post_details['current_user'] || post_details['adm'] == 1)
+        if (post_details['user_id'][i] == post_details['current_user'] || post_details['adm'] == 1) /* if is the use who posts or the adm shows the option to the delete the post*/
         {
             buttonEl.innerHTML = `
-                <button type="button" class="close">
+                <button type="button" class="close" onClick="deletePost(${post_details['post_id'][i]})">
                     <span aria-hidden="true">&times</span>
                 </button>
                 <div class="hrSize">

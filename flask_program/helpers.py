@@ -152,7 +152,6 @@ def json_to_js(path, posts, current_user_id, adm_bool):
         titles_to_add.append(post.title)
         id_to_add.append(post.id)
         user_id.append(post.user_id)
-        #hold = User.query.filter(User.id == post.user_id).first()
         counter += 1
 
     data['path'] = path_to_add
