@@ -6,6 +6,16 @@ const firstRecipes = 9
 /* number of recipes shown when hitting the end of page and enabling infinity scroll */
 const scrollRecipes = 6
 
+/* Function to the delete the post if the user or the adm click on it*/
+function deletePost(postId){
+    fetch("/delete_post", {
+        method: "POST",
+        body:JSON.stringify({postId: postId}),
+    }).then((_res)=>{
+        window.location.href = "/recipes";
+    });
+}
+
 /* signaling the back end to receive a json file with all the post information to show on page */
 async function fetchData(){
     let response = await fetch('/get_posts', {method: 'POST'});
@@ -35,7 +45,7 @@ async function loadImages (already_uploaded, numImages = firstRecipes) {
         if (post_details['user_id'][i] == post_details['current_user'] || post_details['adm'] == 1)
         {
             buttonEl.innerHTML = `
-                <button type="button" class="close">
+                <button type="button" class="close" onClick="deletePost(${post_details['post_id'][i]})">
                     <span aria-hidden="true">&times</span>
                 </button>
                 <div class="hrSize">
