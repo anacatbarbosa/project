@@ -1,5 +1,6 @@
-.aboutUs {
-    
+.aboutUs1 p {
+    margin: 20px;
+    text-align: center;
 }
 
 #creators {
@@ -7,13 +8,18 @@
     box-shadow: 2px 2px lightgray;
     float: left;
     height: 400px;
-    margin: 50px;
+    margin: 40px;
     width: 300px;
 }
 
-p {
-    margin: 20px;
-    text-align: justify;
+.aboutUs2 {
+    float: none;
+    margin-top: 100px;
+}
+
+.aboutUs2 p {
+    margin-top: 25px;
+    margin-inline: 10px;
 }
 
 p span {
