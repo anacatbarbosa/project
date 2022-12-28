@@ -73,7 +73,6 @@ hr {
     height: 20vw;
 }
 
-
 .col-sm h4 {
     color: #FF8099;
     overflow-x: auto;
@@ -83,21 +82,23 @@ hr {
     margin-bottom: 0px;
 }
 
-.col-sm.withScroll h4{
-    font-size: 18px;
-}
 
-.col-sm img {
+.imgRatio {
     height: 80%;
     width: 80%;
-    margin-bottom: 10px;
-    box-shadow: 0px 0px 3px black;
+    margin: auto;
+    position: relative;
 }
 
-.col-sm.withScroll img {
-    height: 80%;
-    width: 80%;
-    margin-bottom: 10px;
+.imgRatio img {
+    max-width: 100%;
+    max-height:100%;
+    margin: auto;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
     box-shadow: 0px 0px 3px black;
 }
 
