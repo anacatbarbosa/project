@@ -27,3 +27,24 @@ p span {
     font-weight: bold;
     text-decoration: underline;
 }
+
+@media only screen and (max-width: 520px) {
+    #creators {
+        border-radius: 10px;
+        box-shadow: 2px 2px lightgray;
+        display: block;
+        float: none;
+        height: 400px;
+        margin: auto;
+        width: 300px;
+    }
+
+    .aboutUs2 {
+        margin-top: 40px;
+    }
+
+    .aboutUs2 p {
+        margin-top: 20px;
+        margin-inline: 10px;
+    }
+}
