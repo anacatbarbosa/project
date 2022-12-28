@@ -6,6 +6,22 @@ const firstRecipes = 9
 /* number of recipes shown when hitting the end of page and enabling infinity scroll */
 const scrollRecipes = 6
 
+/* Check if it has a scroll bar visible*/
+function hasScrollBar(element) {
+    var el = document.getElementById(element);
+    /*var style = window.getComputedStyle(el, null).getPropertyValue('font-size');*/
+    var hs = el.scrollWidth > el.clientWidth;
+    
+    if (hs == true)
+    {
+        var el2 = document.getElementById("hrSize" + element);
+        el2.classList.add("withScrollBar")
+    }
+      
+    console.log(hs)
+
+}
+
 /* Function to the delete the post if the user or the adm click on it*/
 function deletePost(postId){
     fetch("/delete_post", {
@@ -48,9 +64,9 @@ async function loadImages (already_uploaded, numImages = firstRecipes) {
                 <button type="button" class="close" onClick="deletePost(${post_details['post_id'][i]})">
                     <span aria-hidden="true">&times</span>
                 </button>
-                <div class="hrSize">
-                    <h4 class="h4Title">${post_details['titles'][i]}</h4>
-                    <hr class="hrTitle">
+                <div id="hrSize${post_details['post_id'][i]}" class="hrSize">
+                    <h4 id="${post_details['post_id'][i]}" class="h4Title">${post_details['titles'][i]}</h4>
+                    <hr class="hrSet">
                 </div>
                 <div class="imgRatio">
                     <img src=${post_details['path'][i]}>
@@ -59,9 +75,9 @@ async function loadImages (already_uploaded, numImages = firstRecipes) {
         }
         else{
             buttonEl.innerHTML = `
-                <div class="hrSize">
-                    <h4 class="h4Title">${post_details['titles'][i]}</h4>
-                    <hr class="hrTitle">
+                <div id="hrSize${post_details['post_id'][i]}" class="hrSize">
+                    <h4 id="${post_details['post_id'][i]}" class="h4Title">${post_details['titles'][i]}</h4>
+                    <hr class="hrSet">
                 </div>
                 <div class="imgRatio">
                     <img src=${post_details['path'][i]}>
@@ -69,6 +85,7 @@ async function loadImages (already_uploaded, numImages = firstRecipes) {
             `
         }
         container.appendChild(buttonEl)
+        hasScrollBar(post_details['post_id'][i])
         i++;
     }
 }
