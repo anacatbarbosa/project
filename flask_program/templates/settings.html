@@ -1,6 +1,22 @@
 {% extends "index.html" %}
 {% block link %}<link rel="stylesheet" href="static/settings.css"> {% endblock %}
-{% block title %}Settings{% endblock %}
+{% block title %}Profile{% endblock %}
 {% block main %}
-<hr> 
+    <h1>My Profile</h1>
+    <div class="settingsNav">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link navbar-brand" href="#">Change E-mail</a>
+            </li>
+            <hr class="hrSet">
+            <li class="nav-item">
+              <a class="nav-link navbar-brand" href="#">Change Password</a>
+            </li>
+            <hr class="hrSet">
+            <li class="nav-item">
+              <a class="nav-link navbar-brand" href="#">Add Administrator</a>
+            </li>
+            <hr class="hrSet">
+          </ul>
+    </div>
 {% endblock %}
