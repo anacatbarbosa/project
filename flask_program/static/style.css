@@ -150,15 +150,17 @@ main h1 {
     }
   }
 
-  @media only screen and (max-width: 768px){
+  
+
+  @media only screen and (max-width: 640px){
     #carouselHighlights {
-        width: 75%;
+        width: 400px;
         height: 400px;
         margin: 25px auto;
       }
   }
 
-  @media only screen and (max-width: 590px){
+  @media only screen and (max-width: 480px){
     #carouselHighlights {
         width: 95%;
         height: 400px;
