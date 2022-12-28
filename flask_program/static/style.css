@@ -9,6 +9,12 @@
     border-radius: 10px;
 }
 
+.hrSet {
+    margin: 0px 0px 8px 0px !important;
+    background-color: #f90032;
+    height: 1px;
+}
+
 .pink-nav {
     background-color: #F7D5DC !important;
     font-size: 20px;

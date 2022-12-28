@@ -82,6 +82,9 @@ hr {
     margin-bottom: 0px;
 }
 
+.withScrollBar h4{
+    font-size: 17px !important;
+}
 
 .imgRatio {
     height: 80%;
@@ -90,8 +93,12 @@ hr {
     position: relative;
 }
 
+.withScrollBar {
+    width: 86%;
+}
+
 .imgRatio img {
-    max-width: 100%;
+    max-width:100%;
     max-height:100%;
     margin: auto;
     position:absolute;
@@ -105,12 +112,6 @@ hr {
 .hrSize {
     display: inline-block;
     max-width: 100%;
-}
-
-.hrTitle {
-    margin: 0px 0px 8px 0px !important;
-    background-color: #f90032;
-    height: 1px;
 }
 
 /* Responsive mode bellow*/
