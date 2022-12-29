@@ -1,5 +1,8 @@
 <!-- jinja variables: 
-  posts=[] is a list which contains all data about images (img_path, filename, mimetype, user_id)-->
+  posts=[] is a list which contains all data about images (img_path, filename, mimetype, user_id)
+  carousel_highlights[] -> path to the random images to show in carousel
+  post_title[] + post_id[] -> give the ref to the route /recipes/title/post_id
+-->
 
 <!DOCTYPE html>
 <html lang="pt-PT">
@@ -86,9 +89,11 @@
               <div class="carousel-inner carouselHighlights">
                 {% for image in carousel_highlights %}
                   <div class="carousel-item carouselHighlights-item {% if loop.index == 1 %} active {% endif %}">
-                    <img src="{{ url_for('static', filename='uploaded_files/' + image) }}" class="d-block w-100" alt="...">
+                    <a href="/recipes/{{post_title[loop.index - 1]}}/{{post_id[loop.index - 1]}}">
+                        <img src="{{ url_for('static', filename='uploaded_files/' + image) }}" class="d-block w-100" alt="...">
+                    </a>
                   </div>
-                 {% endfor %} 
+                 {% endfor %}
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselHighlights" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -99,7 +104,16 @@
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
-          {% endblock %}
+            <div class="row index">
+                {% for recipe in recipes_highlights %}
+                    <a href="/recipes/{{recipes_title[loop.index - 1]}}/{{recipes_id[loop.index - 1]}}" class="col-sm index">
+                        <div class="imgRatio index">
+                            <img src="{{ url_for('static', filename='uploaded_files/' + recipe) }}">
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            {% endblock %}
         </main>
         <div class="footer-basic">
             <footer>

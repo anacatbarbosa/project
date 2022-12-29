@@ -1,4 +1,5 @@
 import json
+import random
 import re
 
 from flask import flash
@@ -163,3 +164,17 @@ def json_to_js(path, posts, current_user_id, adm_bool):
 
     # Return a dict to the js file.
     return data
+
+
+# Return a list of random number depending of the max quantity
+# max_quantity = Quantity of random numbers to looking for in range(range_random)
+# if the range_random is lower than max_quantity then max_quantity = range_random
+def get_random_list(range_random, max_quantity):
+
+    random_list = []
+    if range_random >= max_quantity:
+        random_list = random.sample(range(range_random), max_quantity)
+    else:
+        random_list = random.sample(range(range_random), range_random)
+
+    return random_list

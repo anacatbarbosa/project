@@ -10,7 +10,7 @@ from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
 
 from . import db
-from .helpers import allowed_file, json_to_js, str_to_list
+from .helpers import allowed_file, get_random_list, json_to_js, str_to_list
 from .models_database import Post, User
 
 #Blueprint allow to code the views, or @app.routes, in multiple files
@@ -24,23 +24,44 @@ def index():
 
     # Max number of images to show randomic in carousel
     max_carousel_display = 5
+
+    # Max number of recipes to show randomic after the carusel
+    max_recipes_display = 4
+
     # Getting post informations
     carousel = Post.query.filter(Post.carousel == 0).all()
+
     # Selecting randons posts to display
     random_amount = len(carousel)
-    # List to store the path to the carousel images
-    carousel_path = []
 
-    if random_amount >= max_carousel_display:
-        random_posts = random.sample(range(random_amount), max_carousel_display)
-    else:
-        random_posts = random.sample(range(random_amount), random_amount)
+    # List to store the path to the carousel informations
+    carousel_path = []
+    carousel_title = []
+    carousel_id = []
+    
+    # List to store the path to the random recipes informations
+    recipes_path = []
+    recipes_title = []
+    recipes_id = []
+
+    random_posts = get_random_list(random_amount, max_carousel_display)
+    random_recipes = get_random_list(random_amount, max_recipes_display)
 
     for i in random_posts:
         hold = str_to_list(carousel[i].filename)
+        carousel_title.append(carousel[i].title)
+        carousel_id.append(carousel[i].id)
         carousel_path.append(hold[0])
-    
-    return render_template('index.html', carousel_highlights=carousel_path, user=current_user)
+
+    for i in random_recipes:
+        hold = str_to_list(carousel[i].filename)
+        recipes_title.append(carousel[i].title)
+        recipes_id.append(carousel[i].id)
+        recipes_path.append(hold[0])
+
+    # Loading random recipes to the show after carousel
+    return render_template('index.html', carousel_highlights=carousel_path, user=current_user, post_title=carousel_title, post_id=carousel_id,
+                            recipes_highlights=recipes_path, recipes_title=recipes_title, recipes_id=recipes_id)
 
 
 @views.route('/about')
