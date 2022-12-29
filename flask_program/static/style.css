@@ -90,6 +90,14 @@ main h1 {
     bottom:0;
 }
 
+main h3 {
+  color: #FF8099;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: center;
+  text-shadow: 2px 2px lightgray;
+}
+
 .row.index{
     flex-wrap: wrap;
     justify-content: center;
@@ -105,6 +113,11 @@ main h1 {
     margin: 10px;
     height: 145px;
     max-width: 145px;
+    transition: all .2s ease-in-out;
+}
+
+.col-sm:hover {
+  transform: scale(1.05);
 }
 
 .imgRatio.index{
@@ -223,5 +236,4 @@ main h1 {
       .carouselHighlights, .carouselHighlights-item {
         height: 100%;
       }
-
   }

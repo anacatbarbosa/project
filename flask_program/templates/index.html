@@ -104,11 +104,12 @@
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
+            <h3>As nossas sugestões:</h3>
             <div class="row index">
                 {% for recipe in recipes_highlights %}
                     <a href="/recipes/{{recipes_title[loop.index - 1]}}/{{recipes_id[loop.index - 1]}}" class="col-sm index">
                         <div class="imgRatio index">
-                            <img src="{{ url_for('static', filename='uploaded_files/' + recipe) }}">
+                            <img src="{{ url_for('static', filename='uploaded_files/' + recipe) }}" alt="{{recipes_title[loop.index - 1]}}">
                         </div>
                     </a>
                 {% endfor %}

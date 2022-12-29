@@ -71,6 +71,7 @@ hr {
     margin: 10px;
     max-width: 30%;
     height: 20vw;
+    transition: all .2s ease-in-out;
 }
 
 .col-sm h4 {
