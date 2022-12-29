@@ -7,8 +7,8 @@ from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from . import db
-from .helpers import check_errors
-from .models_database import User
+from .helpers import check_errors, str_to_list
+from .models_database import Post, User
 
 # Blueprint allow to code the views, or @app.routes, in multiple files
 
@@ -75,3 +75,25 @@ def register():
             return redirect(url_for('views.index'))
 
     return render_template('login.html', user=current_user)
+
+
+# Route to profile page, it will contain, all the user recipes, options like: Change password, change username, change e-mail, if the ...
+# ... user is and adm, will contain the option to add another adm
+@auth.route('/profile', methods=['GET', 'POST'])
+@login_required
+def settings():
+
+    # Get user information
+    id = current_user.get_id()
+    user_info = User.query.filter(User.id == id).first()
+    # Post_info = recipes titles and descriptions
+    post_info = Post.query.filter(Post.user_id == id).all()
+    
+    # Post_thumb = first image from the uploads to use as a thumbnail
+    post_thumb = []
+
+    for i in post_info:
+        hold = str_to_list(i.filename)
+        post_thumb.append(hold[0])
+
+    return render_template('profile.html', user=current_user, user_name=user_info.username, user_email=user_info.email ,my_recipes=post_thumb)

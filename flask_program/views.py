@@ -2,6 +2,7 @@
 import json
 import os
 import random
+from datetime import datetime
 
 from flask import (Blueprint, flash, jsonify, redirect, render_template,
                    request, session, url_for)
@@ -47,12 +48,6 @@ def about():
     return (render_template('about.html', user=current_user))
 
 
-@views.route('/settings')
-@login_required
-def settings():
-    return render_template('settings.html', user=current_user)
-
-
 @views.route('/recipes', methods=['GET', 'POST'])
 def recipes():
 
@@ -77,7 +72,9 @@ def recipes():
         # Go through the files to check if the file name is sercure, and save all the images at static/uploaded_filles 
         for file in files:
             if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
+                # Datatime.now() is used to keep all files with a different name, allows the users uplaod files with the same name, avoid error like two peoplo posting a recipe of ...
+                # ... name, avoid error like two peoplo posting a recipe of chocolate cake and upload different files with the same name "chocolate_cake.jpg"
+                filename = secure_filename(str(datetime.now()) + file.filename) 
                 file_names.append(filename)
                 path_save = os.path.join(upload_folder, filename)
                 file.save(path_save)
@@ -113,10 +110,11 @@ def get_posts():
 
     # Post_info = recipes titles and descriptions
     post_info = Post.query.filter(Post.carousel == 0).all()
-    id = current_user.get_id()
-    user_info = User.query.filter(User.id == id).first()
+    # Get user info
+    user_info = User.query.filter(User.id == current_user.get_id()).first()
     # Post_thumb = first image from the uploads to use as a thumbnail
     post_thumb = []
+
     for i in post_info:
         hold = str_to_list(i.img_path)
         post_thumb.append(hold[0])
@@ -125,6 +123,7 @@ def get_posts():
         data = json_to_js(post_thumb, post_info, None, None)
     else:
         data = json_to_js(post_thumb, post_info, user_info.id, user_info.adm_bool)
+    
     # Returns to JS file.
     return jsonify(data)
 
