@@ -1,3 +1,7 @@
+.settingsNav {
+    width: 30%;
+}
+
 .flex-column li {
     margin-top: 20px;
     margin-inline: 15px;
