@@ -81,7 +81,7 @@ def register():
 # ... user is and adm, will contain the option to add another adm
 @auth.route('/profile', methods=['GET', 'POST'])
 @login_required
-def settings():
+def profile():
 
     # Get user information
     id = current_user.get_id()
@@ -96,4 +96,4 @@ def settings():
         hold = str_to_list(i.filename)
         post_thumb.append(hold[0])
 
-    return render_template('profile.html', user=current_user, user_name=user_info.username, user_email=user_info.email ,my_recipes=post_thumb)
+    return render_template('profile.html', user=current_user, user_name=user_info.name, user_email=user_info.email ,my_recipes=post_thumb)

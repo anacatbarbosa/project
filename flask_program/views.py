@@ -16,7 +16,7 @@ from .models_database import Post, User
 #Blueprint allow to code the views, or @app.routes, in multiple files
 
 views = Blueprint('views', __name__) #setting the Blueprint variable name.
-upload_folder = 'flask_program/static/uploaded_files'# path to the uploaded folder to save the files. Path from main.py to upoladed_files
+upload_folder = 'flask_program/static/uploaded_files/'# path to the uploaded folder to save the files. Path from main.py to upoladed_files
 file_to_html =  '../static/uploaded_files' #path to pass to html file, this path + filename will inform the url to the html go take it
 
 @views.route('/')
@@ -100,8 +100,6 @@ def recipes_pag(post_title, post_id):
 
     post_path = str_to_list(post.filename)
     
-    for i in post_path:
-        print (i)
     return render_template('recipe_details.html', user=current_user, page_title=str(post_title), carouselimg = post_path, post_info = post)
 
 
@@ -127,13 +125,35 @@ def get_posts():
     # Returns to JS file.
     return jsonify(data)
 
+
 @views.route('/delete_post', methods=['POST'])
 def delete_post():
+
+    # Get the resquested data from index.js - Post ID
     post = json.loads(request.data)
     postId = post['postId']
+
+    # Get the column needed to drop
     post = Post.query.get(postId)
+
+    # all the images to delete from the db and the computer
+    post_info = Post.query.filter(Post.id == postId).first()
     if post:
         if post.user_id == current_user.id:
+            
+            # Parse the str list format to a real list
+            list_delete = str_to_list(post_info.filename)
+
+            # Delete images one by one
+            for i in list_delete:
+                # Myfile receive = path to the uploaded_files + image name
+                myfile = upload_folder + i
+                print(myfile)
+
+                # Tells os it is a file to delete it 
+                os.remove(myfile)
+            
+            # Delete the column from db
             db.session.delete(post)
             db.session.commit()
 
