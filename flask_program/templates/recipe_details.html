@@ -1,5 +1,8 @@
 {% extends "index.html" %}
-{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='recipe_details.css') }}">{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="{{ url_for('static', filename='recipe_details.css') }}">
+<script src="{{url_for('static', filename='error.js')}}"></script>
+{% endblock %}
 {% block title %}{{ page_title }}{% endblock %}
 {% block main %}
     <!-- carouselimg (img path list for each recipe), post_info.title (recipe title), post_info.description (recipe description) 
@@ -15,7 +18,7 @@
                 <div class="carousel-inner carouselRecipes">
                     {% for image in carouselimg %}
                         <div class="carousel-item carouselRecipes-item {% if loop.index == 1 %} active {% endif %}">
-                            <img src="{{ url_for('static', filename='uploaded_files/' + image) }}" class="d-block w-100" alt="{{ post_info.title }}">
+                            <img src="{{ url_for('static', filename='uploaded_files/' + image) }}" class="d-block w-100" alt="{{ post_info.title }}" onError="errorFunction()">
                         </div>
                     {% endfor %}
                 </div>
@@ -34,4 +37,7 @@
             <pre>{{ post_info.description }}</pre>
         </div>
     </div>      
+{% endblock %}
+{% block script %}
+
 {% endblock %}

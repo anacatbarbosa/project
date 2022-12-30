@@ -105,7 +105,7 @@ def recipes():
                 return redirect(url_for('views.recipes'))
 
         # add all the posts informations to the database
-        post = Post(carousel=0, description=description, filename=str(file_names), img_path=str(path_html), title=title, user_id=current_user.get_id()) 
+        post = Post(carousel=0, description=description, filename=str(file_names), img_path=str(path_html), title=title, user_id=current_user.id) 
         db.session.add(post)
         db.session.commit()
     
@@ -120,17 +120,24 @@ def recipes_pag(post_title, post_id):
         return redirect(url_for('views.recipes'))
 
     post_path = str_to_list(post.filename)
+    myfile = upload_folder + post_path[0]
+    if os.path.isfile(myfile) == False:
+        return redirect(url_for('views.recipes'))
     
     return render_template('recipe_details.html', user=current_user, page_title=str(post_title), carouselimg = post_path, post_info = post)
 
 
-@views.route('/get_posts', methods=['POST'])
-def get_posts():
-
+@views.route('/get_posts/<string:adress>', methods=['POST'])
+def get_posts(adress):
+    
     # Post_info = recipes titles and descriptions
-    post_info = Post.query.filter(Post.carousel == 0).all()
+    if adress == "profile":
+        post_info = Post.query.filter(Post.user_id == current_user.id).all()
+    else:
+        post_info = Post.query.filter(Post.carousel == 0).all()
+
     # Get user info
-    user_info = User.query.filter(User.id == current_user.get_id()).first()
+    user_info = User.query.filter(User.id == current_user.id).first()
     # Post_thumb = first image from the uploads to use as a thumbnail
     post_thumb = []
 
@@ -169,7 +176,6 @@ def delete_post():
             for i in list_delete:
                 # Myfile receive = path to the uploaded_files + image name
                 myfile = upload_folder + i
-                print(myfile)
 
                 # Tells os it is a file to delete it 
                 os.remove(myfile)

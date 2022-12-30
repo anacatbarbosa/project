@@ -27,13 +27,14 @@ function deletePost(postId){
         method: "POST",
         body:JSON.stringify({postId: postId}),
     }).then((_res)=>{
-        window.location.href = "/recipes";
+        window.location.href = String("/" + url);
     });
 }
 
 /* signaling the back end to receive a json file with all the post information to show on page */
-async function fetchData(){
-    let response = await fetch('/get_posts', {method: 'POST'});
+async function fetchData(url){
+    const adress = '/get_posts/' + url;
+    let response = await fetch(adress, {method: 'POST'});
     let data = await response.json();
     data = JSON.stringify(data);
     data = JSON.parse(data);
@@ -45,7 +46,7 @@ let scroll_counter = 0;
 /* function to load numImages to show on #infinity div at recipes.html
    post_details contains path, titles and post_id*/
 async function loadImages (already_uploaded, numImages = firstRecipes) {
-    const post_details = await fetchData()
+    const post_details = await fetchData(url)
     const total_posts = post_details['path'].length /* counts every post */
     let i = already_uploaded;
     numImages += already_uploaded
