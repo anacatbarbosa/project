@@ -1,5 +1,7 @@
 const container = document.querySelector('#infinity');
-
+// needed in my profile to show only user recipes and not all recipes
+let url = String(window.location.href).split('/')
+url = url[url.length - 1]
 /* number of recipes displayed at first when accessing recipes page */
 const firstRecipes = 9
 
