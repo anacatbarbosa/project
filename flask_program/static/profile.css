@@ -1,8 +1,23 @@
+.flexProfile {
+    display: flex;
+}
+
 .settingsNav {
     width: 30%;
+}
+
+.settingsNav button {
+    border: none;
+    color: #4b4c4d;
+    font-size: 20px;
+    text-shadow: 2px 2px lightpink;
 }
 
 .flex-column li {
     margin-top: 20px;
     margin-inline: 15px;
+}
+
+.myProfile {
+    width: 70%;
 }
