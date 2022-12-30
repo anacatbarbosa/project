@@ -46,6 +46,9 @@ let scroll_counter = 0;
 /* function to load numImages to show on #infinity div at recipes.html
    post_details contains path, titles and post_id*/
 async function loadImages (already_uploaded, numImages = firstRecipes) {
+    if (container == null) {
+        return false;
+    }
     const post_details = await fetchData(url)
     const total_posts = post_details['path'].length /* counts every post */
     let i = already_uploaded;

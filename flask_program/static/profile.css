@@ -85,3 +85,34 @@ p {
     display: inline-block;
     max-width: 100%;
 }
+
+form {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin: auto;
+    text-align: center;
+    width: 85%;
+}
+
+form div {
+    margin: auto;
+    text-align: center;
+}
+
+form button {
+    background-color: #FF8099 !important;
+    border-color: #FF8099 !important;
+    font-weight: bold !important;
+    margin: auto;
+    text-align: center;
+}
+
+.form-control:focus {
+    border-color: #FF8099 !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 128, 153, 0.6);
+}
+
+.btn-primary:active, .btn-primary:focus {
+    border-color: #FF8099 !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 128, 153, 0.6) !important;
+}
