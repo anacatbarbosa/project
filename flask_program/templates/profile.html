@@ -3,7 +3,11 @@
 <link rel="stylesheet" href="static/profile.css"> {% endblock %}
 {% block title %}Profile{% endblock %}
 {% block main %}
-<h1>My Profile</h1>
+<h1>
+    <a href="/profile" class="profileTitle">
+        My Profile
+    </a>
+</h1>
 <p>Welcome back, {{ user_name }}!</p>
 <div class="flexProfile">
 	<div class="settingsNav">

@@ -1,3 +1,18 @@
+
+.profileTitle  {
+    color: #FF8099;
+    text-shadow: 2px 2px lightgray;
+    border: none;
+    background: none;
+    margin-top: 15px;
+    text-align: center !important;
+}
+
+.profileTitle:hover{
+    text-decoration: none;
+    color: #FF8099;
+}
+
 p {
     text-align: center;
 }
@@ -122,11 +137,15 @@ form button {
 
 /* Responsive mode bellow*/
 @media only screen and (max-width: 1200px) {
+
     .col-sm {
         flex-basis: 40%;
         margin: 10px;
         max-width: 40%;
         height: 30vw;
+    }
+    .col-sm-2 {
+        max-width: 100% !important;
     }
     form .row {
        flex-direction: column;
@@ -177,6 +196,6 @@ form button {
         height: 70vw;
     }
     .hrSize{
-        max-width: 100%;
+        max-width: 90%;
     }
 }
