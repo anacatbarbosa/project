@@ -57,7 +57,6 @@ async function loadImages (already_uploaded, numImages = firstRecipes) {
         buttonEl.classList.add('col-sm')
         formation_string = "/recipes/"+post_details['titles'][i]+"/"+post_details['post_id'][i]
         buttonEl.formAction = formation_string
-        console.log(post_details)
         if (post_details['user_id'][i] == post_details['current_user'] || post_details['adm'] == 1)
         {
             buttonEl.innerHTML = `
