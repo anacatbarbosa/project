@@ -84,8 +84,9 @@ def register():
 def profile():
 
     # Get user information
-    id = current_user.get_id()
+    id = current_user.id
     user_info = User.query.filter(User.id == id).first()
+
     # Post_info = recipes titles and descriptions
     post_info = Post.query.filter(Post.user_id == id).all()
     
@@ -97,3 +98,42 @@ def profile():
         post_thumb.append(hold[0])
 
     return render_template('profile.html', user=current_user, user_name=user_info.name, user_email=user_info.email ,my_recipes=post_thumb)
+
+@auth.route('/profile/<string:item>', methods=['POST'])
+@login_required
+def change(item):
+    user = User.query.filter(User.id == current_user.id).first()
+    current_pw = request.form.get("password")
+
+    if not check_password_hash(user.password, current_pw):
+            flash('Invalid password. Please try again.', category='error')
+            return redirect(url_for('auth.profile'))
+
+    if item == "name":
+        new_name = request.form.get("newName")
+        if check_errors(new_name, False, False, False) > 0:
+            return redirect(url_for('auth.profile'))
+        user.name = new_name
+        flash('Name Changed!', category='success')
+
+    elif item == "email":
+        new_email = request.form.get("newEmail")
+        email_verification = User.query.filter_by(email=new_email).first()
+        if email_verification:
+            flash('E-mail already in use. Please try another one.', category='error')
+            return redirect(url_for('auth.profile'))
+        if check_errors(False, new_email, False, False) > 0:
+            return redirect(url_for('auth.profile'))
+        user.email = new_email
+        flash('E-mail Changed!', category='success')
+
+    elif item == "password":
+        new_password = request.form.get("newPw")
+        confirm_newpw = request.form.get("confirmPw")
+        if check_errors(False, False, new_password, confirm_newpw) > 0:
+            return redirect(url_for('auth.profile'))
+        user.password = generate_password_hash(new_password)
+        flash('Password Changed!', category='success')
+                
+    db.session.commit()
+    return redirect(url_for('auth.profile'))

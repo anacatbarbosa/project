@@ -4,10 +4,11 @@ p {
 
 .flexProfile {
     display: flex;
+    justify-content: space-between;
 }
 
 .settingsNav {
-    width: 30%;
+    width: 25%;
 }
 
 .settingsNav button {
@@ -120,7 +121,7 @@ form button {
 }
 
 /* Responsive mode bellow*/
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1200px) {
     .col-sm {
         flex-basis: 40%;
         margin: 10px;
@@ -131,9 +132,20 @@ form button {
        flex-direction: column;
        align-items: center;
     }
+    .hrSize {
+        max-width: 90%;
+    }
 }
 
 @media only screen and (max-width: 768px) {
+    .flexProfile {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .settingsNav {
+        width: 100%;
+    }
     p {
         margin-inline: 30px;
     }
@@ -163,5 +175,8 @@ form button {
         margin: 10px;
         max-width: 80%;
         height: 70vw;
+    }
+    .hrSize{
+        max-width: 100%;
     }
 }

@@ -137,7 +137,7 @@ def get_posts(adress):
         post_info = Post.query.filter(Post.carousel == 0).all()
 
     # Get user info
-    user_info = User.query.filter(User.id == current_user.id).first()
+    user_info = User.query.filter(User.id == current_user.get_id()).first()
     # Post_thumb = first image from the uploads to use as a thumbnail
     post_thumb = []
 

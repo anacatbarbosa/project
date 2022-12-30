@@ -66,20 +66,31 @@ def flash_all(password_errors):
     if password_errors['lowercase'] == False:
         flash('The password must contain at least 1 lowercase letter.', category='error')
 
+
+# Check_error will be used in multiple files, for differente reasons. If one of the argument is explicity False, it will skip the verification
+# e.g. The check_errors will be used at change_e-mail as well, so the code wont check the name and password
 def check_errors(name, email, password1, password2):
     errors = 0
-    if len(name) < 2:
+    if name == False:
+        pass
+    elif len(name) < 2:
         flash('Name must be greater than 1.', category='error')
         errors += 1
-    if not check_email(email):
+    
+    if email == False:
+        pass
+    elif not check_email(email):
         flash('Invalid E-mail.', category='error')
         errors += 1
+
     # check_password_requirements is a function that returns 'success' or a dictionary that contains all the error with a value False. 
-    if check_password_requirements(password1) != 'success':
+    if password1 == False:
+        pass    
+    elif check_password_requirements(password1) != 'success':
         # flash_all get the dict returned by check_password_requirements and flash all the errors
         flash_all(check_password_requirements(password1))
         errors += 1
-    if password1 != password2:
+    elif password1 != password2:
         flash('Passwords do not match. Please try again.', category='error')
         errors += 1
     return errors
