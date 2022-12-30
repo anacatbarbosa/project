@@ -11,6 +11,7 @@ p {
 }
 
 .settingsNav button {
+    background: none;
     border: none;
     color: #4b4c4d;
     font-size: 20px;
@@ -89,7 +90,8 @@ p {
 form {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    margin: auto;
+    margin-inline: auto;
+    margin-top: 35px;
     text-align: center;
     width: 85%;
 }
@@ -115,4 +117,10 @@ form button {
 .btn-primary:active, .btn-primary:focus {
     border-color: #FF8099 !important;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 128, 153, 0.6) !important;
+}
+
+@media only screen and (max-width: 910px) {
+    .changeName, .changePw, .changeEmail, .addAdmin {
+        width: 70%;
+    }
 }
