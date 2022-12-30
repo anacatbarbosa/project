@@ -1,3 +1,3 @@
 // div where content will be added
-console.log('hello')
+const profileDiv = document.querySelector('#myProfile');
 

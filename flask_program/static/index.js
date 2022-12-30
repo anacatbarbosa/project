@@ -17,9 +17,6 @@ function hasScrollBar(element) {
         var el2 = document.getElementById("hrSize" + element);
         el2.classList.add("withScrollBar")
     }
-      
-    console.log(hs)
-
 }
 
 /* Function to the delete the post if the user or the adm click on it*/
@@ -53,10 +50,10 @@ async function loadImages (already_uploaded, numImages = firstRecipes) {
 
     /* loop breaks when total posts are reached */
     while (i < numImages && i < total_posts) {
-        const buttonEl = document.createElement('button')
+        const buttonEl = document.createElement('a')
         buttonEl.classList.add('col-sm')
-        formation_string = "/recipes/"+post_details['titles'][i]+"/"+post_details['post_id'][i]
-        buttonEl.formAction = formation_string
+        href = "/recipes/"+post_details['titles'][i]+"/"+post_details['post_id'][i]
+        buttonEl.href = href
         if (post_details['user_id'][i] == post_details['current_user'] || post_details['adm'] == 1)
         {
             buttonEl.innerHTML = `

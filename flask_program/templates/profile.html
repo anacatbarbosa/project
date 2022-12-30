@@ -4,6 +4,7 @@
 {% block title %}Profile{% endblock %}
 {% block main %}
 <h1>My Profile</h1>
+<p>Welcome back, {{ user_name }}!</p>
 <div class="flexProfile">
 	<div class="settingsNav">
 		<ul class="nav flex-column">
@@ -30,5 +31,6 @@
 </div>
 {% endblock %}
 {% block script %}
+<script src="static/index.js"></script>
 <script src="static/profile.js"></script>
 {% endblock %}
