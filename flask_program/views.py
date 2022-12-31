@@ -24,6 +24,11 @@ upload_folder = 'flask_program/static/uploaded_files/'
  #path to pass to html file, this path + filename will inform the url to the html go take it
 file_to_html =  '../static/uploaded_files'
 
+# If the user search for the url blank goes to home
+@views.route('/')
+def star():
+    return redirect('/home')
+
 
 @views.route('/home')
 def index():

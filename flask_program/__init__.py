@@ -1,4 +1,5 @@
 import os
+import secrets
 
 from flask import Flask, flash, redirect, url_for
 from flask_login import LoginManager
@@ -8,13 +9,17 @@ db = SQLAlchemy()
 DB_NAME = "database.db"
 
 def creat_app():
+    
     #configure app name
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'ashdkasjd asdlkjasdl' #here while its not going to production.
+
+    # Get a secret Secret_key
+    app.config['SECRET_KEY'] = secrets.token_hex(20)
 
     # Setting the upload pictures folder
     picFolder = 'flask_program/static/uploaded_files'
     app.config['UPLOAD_FOLDER'] = picFolder
+
     # template auto-reload
     app.config["TEMPLATES_AUTO_RELOAD"] = True
 
@@ -45,9 +50,10 @@ def creat_app():
     def load_user(id):
         return User.query.get(int(id))
 
+    # Handle not_found pages
     @app.errorhandler(404)
     def page_not_found(error):
-        flash('Ups! looking for another cupcake or recipe? That page was not found', category='error')
+        flash('Ups! looking for another cupcake or recipe? That page was not found.', category='error')
         return redirect(url_for('views.index')), 404
 
     creat_database(app) #only creates a database if it doesn't exist
