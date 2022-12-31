@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, flash, redirect, url_for
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
@@ -44,6 +44,11 @@ def creat_app():
     @login_manager.user_loader 
     def load_user(id):
         return User.query.get(int(id))
+
+    @app.errorhandler(404)
+    def page_not_found(error):
+        flash('Ups! looking for another cupcake or recipe? That page was not found', category='error')
+        return redirect(url_for('views.index')), 404
 
     creat_database(app) #only creates a database if it doesn't exist
 

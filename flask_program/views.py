@@ -25,7 +25,7 @@ upload_folder = 'flask_program/static/uploaded_files/'
 file_to_html =  '../static/uploaded_files'
 
 
-@views.route('/')
+@views.route('/home')
 def index():
 
     # Max number of images to show randomic in carousel
@@ -134,10 +134,13 @@ def recipes_pag(post_title, post_id):
         return redirect(url_for('views.recipes'))
 
     post_path = str_to_list(post.filename)
+    
+    # Confirm if the recipe really exist, avoid unkown url recipes
     myfile = upload_folder + post_path[0]
     if os.path.isfile(myfile) == False:
         return redirect(url_for('views.recipes'))
     
+    # Calc the number of buttons in carousel, showing the number of buttons as the number of images
     carousel_buttons = len(post_path)
 
     return render_template('recipe_details.html', user=current_user, page_title=str(post_title), carouselimg = post_path, post_info = post, carousel_buttons=carousel_buttons)
@@ -162,6 +165,8 @@ def get_posts(address):
         hold = str_to_list(i.img_path)
         post_thumb.append(hold[0])
 
+    # If it has a logged user, pass the user id and if the user or not an adm. json_to_js will parse that data to a dict
+    #   that will be jsonify the data for the index.js infinityScroll
     if user_info == None:
         data = json_to_js(post_thumb, post_info, None, None)
     else:
@@ -204,5 +209,6 @@ def delete_post():
             # Delete the column from db
             db.session.delete(post)
             db.session.commit()
-
+    
+    # Return an empty result 
     return jsonify({})

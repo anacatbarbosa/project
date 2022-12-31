@@ -9,7 +9,8 @@ from .models_database import User
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
-def check_email(email): # checking if the e-mail is valid using re, https://docs.python.org/3/library/re.html
+# Checking if the e-mail is valid using re, https://docs.python.org/3/library/re.html
+def check_email(email): 
     regex =  '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
     regex2 = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+[.]\w{2,3}$' 
     if re.search(regex2,email) or re.search(regex,email):   
