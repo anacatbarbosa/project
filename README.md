@@ -22,6 +22,8 @@ command: python3 main_locally_host.py #to run hosting into your local network us
 # About this project
 You can find the inspiration behind this project on the 'About' page of this project. 
 It was created and developed as a team, always analyzed and discussed, so it would become exactly what we pictured.
+
+#All files explained
 ## HTML
 index.html - our website's homepage. It contains a carousel with images uploaded by the users and below a few random recipe links below that when clicked will redirect the user to those recipes.
 
@@ -39,13 +41,15 @@ All these pages have the same navigation bar and footer. The navigation bar cons
 
 ## CSS
 
-style.css - general styling of common elements all webpages have. That includes the scrollbar, navigation and footer, body general settings, alerts, header styles, the carousel style for the homepage, hover effects and their responsive behavior with three different max-width so it would look great on any screen :)
+style.css - general styling of common elements all webpages have. That includes the scrollbar, navigation and footer, body general settings, alerts, header styles, the carousel style for the homepage, hover effects and their responsive behavior with different screen sizes so it would look great on almost any screen :)
 
 about.css - as the name suggests, styling of the about.html page. Our shorter CSS file since it's not a page that the user can interact with and also the one with less elements. Just a few rules to make both text and the image look well positioned and also responsive. We don't want our page to look like our Word documents look after we move an image, do we?
 
 login.css - all forms present on our project are styled the same, and here was when we styled the first forms (login and registration). This CSS file contains mainly form stylization since the login page is composed by two forms. 
 
 recipes.css - where we styled the form for adding a recipe and how the recipe list would look. With the help of flexbox and some minimalist hover effects, we were able to organize our recipes (while also making it responsive).
+
+recipe_details.css - with the help of flexbox we stylized each individual recipe page with a carousel composed of the uploaded images from the user and the respective recipe on it's side. It follows the same style rules as the rest of the website and let's just say making a carousel responsive is not an easy task... but we made it!
 
 profile.css - once more, flexbox comes to the rescue and helps us with dividing the user profile page with a vertical menu on the left side of the page, and the corresponding dynamic response to each menu button on the right side. We also used the same stylization on the users recipes from recipes.css to keep things neat and tidy (and... responsive!)
 
@@ -58,24 +62,44 @@ profile.js - where we made the user interface from profile.html dynamic. With th
 error.js - there was this little bug on recipes where on post deletion it would still redirect the user to the recipe page when clicking on the delete button despite it being, well, deleted. This file prevents that from happening by redirecting the user to the recipes.html page in case the recipe is no longer in our database.
 ## Python
 
-__init__.py - 
+__init__.py - where the app is created using a random secret key and all its configurations. It's configurated to create the database if it's non-existant otherwise it just accesses the existant one for the website's functionalities. All the processes are explained in comments throughout all the code. Sets flask configurations and handles the 404 error.
 
-auth.py - 
+auth.py - it handles login, logout, register, profile and credentials updates. If with admin privelege, the admin can also add a new admin. You can also find a detailed orientation regarding these processes on the code file comments.
 
-helpers.py -
+helpers.py - contains helping functions for the other python files. Similar to helpers.py on CS50's finance project. Helpers.py contains check_email, check_password_requirements, flash_all, check_errors, allowed_file, str_to_list, json_to_js, get_random_list. As the other coding files, you have helping comments on each of these functions explaining what they do!
 
-models_database.py -
+models_database.py - used database models for user and posts (it contains all user and recipes information respectively). Information such as ids, names, file names, etc.
 
-views.py -
+views.py - it handles homepage, about, recipes, recipe_details, infinity scroll for recipes.html and profile.html, and delete post function. On a short explanation, views.py handles the webpages where no security authentication is necessary, while auth.py handles the pages and functionalities present when the user is authenticated.
 
-main_locally_host.py -
+main_locally_host.py - file to make the flask server easier to run hosting it on a local network (according to flask documentation, not safe to use for production. Don't use it on a public or unknown network, please stay safe!)
  
-main.py -
+main.py - file to make the app run easier, on PC. Avoiding long terminal commands, the web app can be run with just python3 main.py or python3 main_locally_host.py (please remember the latter one should NOT be used in public or unknown networks).
 
 ## SQL
 
-database.db - 
+database.db - contains two tables, one for user information, one for post information. User table is composed by id, adm_bool (check if user is admin), email, password, name and posts. Post table is composed by id, carousel, description, date, filename, img_path, title, user_id. User table is connected to Post table through posts.
+
+## General Files
+
+colors.txt - contains our website and logo colors.
+
+static_imgs folder - images used on our website, like the logo and the cupcakes on the login/register page. 
+
+uploaded_files - images uploaded by users.
 # Credits:
 Menu icons created by Freepik - Flaticon https://www.flaticon.com/free-icons/menu 
+
+Fonts used - https://fonts.google.com/
+
+Our savior - https://getbootstrap.com/
+
+Our bibles - https://stackoverflow.com/
+             https://www.w3schools.com/
+             https://cs50.harvard.edu/x/2022/
+             https://www.geeksforgeeks.org/
+
+Honorable mention to - https://www.google.com
+
 Big thanks to: https://www.youtube.com/@TechWithTim
 
