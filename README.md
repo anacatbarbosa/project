@@ -22,6 +22,9 @@ command: python3 main.py
 # To run as local network host
 command: python3 main_locally_host.py #to run hosting into your local network using a 5000 port, it's possible to change the port at the file main_locally_host.py at "app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', XXXX)))" Where XXXX = port number - Please be careful and don't trust unknown domains or public networks, stay safe.
 
+# For testing
+
+database.db has an adm account so you can test it. E-mail: admintest@gmail.com Password: Adm123456!
 # About this project
 You can find the inspiration behind this project on the 'About' page of this project. 
 It was created and developed as a team, always analyzed and discussed, so it would become exactly what we pictured.
@@ -60,7 +63,7 @@ profile.css - once more, flexbox comes to the rescue and helps us with dividing 
 
 index.js - the first and main JavaScript file. It's where we implemented infinity scroll functions, how many recipes to show first, and how many to load during scroll on recipes.html. It's also where we implemented the delete post function and where we fetch the necessary data with fetchData function to display on our recipes page. (If in need of guidance, check the comments on the code where we explain the different objectives of each part!)
 
-profile.js - where we made the user interface from profile.html dynamic. With the help of getElementbyId we fetched all the clickable buttons and added, on click, the necessary HTML to show each form. User can change name, e-mail and password. By fetching the <div> where all the HTML info would be rendered, all we had to do was render different HTML forms for each button!
+profile.js - where we made the user interface from profile.html dynamic. With the help of getElementbyId we fetched all the clickable buttons and added, on click, the necessary HTML to show each form. User can change name, e-mail and password. By fetching the div where all the HTML info would be rendered, all we had to do was render different HTML forms for each button!
 
 error.js - there was this little bug on recipes where on post deletion it would still redirect the user to the recipe page when clicking on the delete button despite it being, well, deleted. This file prevents that from happening by redirecting the user to the recipes.html page in case the recipe is no longer in our database.
 ## Python
