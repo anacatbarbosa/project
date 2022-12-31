@@ -53,7 +53,7 @@ def creat_app():
     # Handle not_found pages
     @app.errorhandler(404)
     def page_not_found(error):
-        flash('Ups! looking for another cupcake or recipe? That page was not found.', category='error')
+        flash('Ups! Looking for another cupcake or recipe? That page was not found.', category='error')
         return redirect(url_for('views.index')), 404
 
     creat_database(app) # Only creates a database if it doesn't exist
