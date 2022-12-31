@@ -1,5 +1,6 @@
 // div where content will be added
 const profileDiv = document.querySelector('#myProfile');
+// buttons from user interface menu
 const nameButton = document.getElementById('nameChange');
 const emailButton = document.getElementById('emailChange');
 const pwButton = document.getElementById('pwChange');
