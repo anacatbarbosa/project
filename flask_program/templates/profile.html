@@ -13,7 +13,7 @@
 	<div class="settingsNav">
 		<ul class="nav flex-column">
 			<li class="nav-item">
-				<button class="nav-link navbar-brand" type="button" id="nameChange">Change Username</button>
+				<button class="nav-link navbar-brand" type="button" id="nameChange">Change Name</button>
 			</li>
 			<hr class="hrSet">
 			<li class="nav-item">
@@ -24,13 +24,15 @@
 				<button class="nav-link navbar-brand" type="button" id="pwChange">Change Password</button>
 			</li>
 			<hr class="hrSet">
+            {% if is_adm == 1%}
 			<li class="nav-item">
 				<button class="nav-link navbar-brand" type="button" id="addAdmin">Add Administrator</button>
 			</li>
 			<hr class="hrSet">
+            {% endif %}
 		</ul>
 	</div>
-	<!-- variables user (if user is logged), user_name, my_recipes[] (list with first image of each user's recipes), user_email -->
+	<!-- variables user (if user is logged), user_name, my_recipes[] (list with first image of each user's recipes), user_email, is_adm (0 for no and 1 if it is) -->
 
 	<div class="myProfile" id="myProfile">
 		<div class="row" id="infinity"></div>
