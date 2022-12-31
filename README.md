@@ -1,6 +1,9 @@
 # Project Com Amor, Graça
  CS50 Final project, recipes web app where users can see and share recipes while having their own profile and being able to manage all their data.
 
+ # Video Demo URL
+ https://youtu.be/2o3cHpEI1pE
+
 # Necessary to run locally.
 https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/
 
@@ -103,3 +106,11 @@ Honorable mention to - https://www.google.com
 
 Big thanks to: https://www.youtube.com/@TechWithTim
 
+# Dedicated to
+
+This is, in fact, a lot more than our final CS50x final project. We started the CS50x course shortly after Leo's dad, Renato Silva, passed away. And like we described on our About Us page, this project was named after my aunt Graça Machado who passed 5 years ago, and who taught me how to cook. 
+From April (when we started the course) to today (the 31st of December), we doubted far too many times if we would be able to finish or even do a Final Project worth submitting.
+We would like to dedicate this project to them, Renato who was known for his amazing grill skills and seasoning gifts and even better dad skills, and Graça, the best pastry chef in town, while also being, like her desserts, the sweetest aunt and human being one could ever meet.
+Love you always,
+
+Catarina & Leonardo
