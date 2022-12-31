@@ -11,9 +11,9 @@
         <div class="carouselSize">
             <div id="carouselRecipes" class="carousel slide" data-bs-ride="true">
                 <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselRecipes" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselRecipes" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselRecipes" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                {% for i in range(carousel_buttons) %}
+                    <button type="button" data-bs-target="#carouselRecipes" data-bs-slide-to="{{ loop.index - 1}}" {% if loop.index == 1 %} class="active" aria-current="true"{% endif %} aria-label="Slide {{ loop.index - 1}}"></button>
+                {% endfor %}
                 </div>
                 <div class="carousel-inner carouselRecipes">
                     {% for image in carouselimg %}
