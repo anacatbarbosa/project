@@ -18,7 +18,7 @@ hr {
 .generalForm {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    width: 50%;
+    width: 60%;
     margin: auto;
     text-align: center;
 }
@@ -131,6 +131,9 @@ hr {
         max-width: 40%;
         height: 30vw;
     }
+    .generalForm {
+        width: 85%;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -151,6 +154,9 @@ hr {
         margin: 10px;
         max-width: 80%;
         height: 50vw;
+    }
+    .hrSize {
+        max-width: 90%;
     }
 }
 

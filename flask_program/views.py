@@ -15,9 +15,15 @@ from .models_database import Post, User
 
 #Blueprint allow to code the views, or @app.routes, in multiple files
 
-views = Blueprint('views', __name__) #setting the Blueprint variable name.
-upload_folder = 'flask_program/static/uploaded_files/'# path to the uploaded folder to save the files. Path from main.py to upoladed_files
-file_to_html =  '../static/uploaded_files' #path to pass to html file, this path + filename will inform the url to the html go take it
+#setting the Blueprint variable name.
+views = Blueprint('views', __name__)
+
+# path to the uploaded folder to save the files. Path from main.py to upoladed_files
+upload_folder = 'flask_program/static/uploaded_files/'
+
+ #path to pass to html file, this path + filename will inform the url to the html go take it
+file_to_html =  '../static/uploaded_files'
+
 
 @views.route('/')
 def index():
@@ -44,9 +50,11 @@ def index():
     recipes_title = []
     recipes_id = []
 
+    # The get_random_list will make sure the random numbers wont exceed the Max_*_display and the quantity of recipes it has on db as well
     random_posts = get_random_list(random_amount, max_carousel_display)
     random_recipes = get_random_list(random_amount, max_recipes_display)
 
+    # Those for loops will pass the informations to the list's.
     for i in random_posts:
         hold = str_to_list(carousel[i].filename)
         carousel_title.append(carousel[i].title)
@@ -64,16 +72,19 @@ def index():
                             recipes_highlights=recipes_path, recipes_title=recipes_title, recipes_id=recipes_id)
 
 
+# Render the about page
 @views.route('/about')
 def about():
     return (render_template('about.html', user=current_user))
 
 
+# Render the about general recipes page
 @views.route('/recipes', methods=['GET', 'POST'])
 def recipes():
 
+    # Post will be called when the logged user upload a file
     if request.method == 'POST':
-        # Get the only one or the multiple files from html
+        # Get the inputs from html
         files = request.files.getlist('files[]')
         description = request.form.get('recipe_description')
         title = request.form.get('recipe_title')
@@ -88,13 +99,16 @@ def recipes():
         
         # Store all the file names from user
         file_names = []
-        # Store the path to use into the html files to find the img
+
+        # Store the path to use into the html 
         path_html = []
+
         # Go through the files to check if the file name is sercure, and save all the images at static/uploaded_filles 
         for file in files:
             if file and allowed_file(file.filename):
-                # Datatime.now() is used to keep all files with a different name, allows the users uplaod files with the same name, avoid error like two peoplo posting a recipe of ...
-                # ... name, avoid error like two peoplo posting a recipe of chocolate cake and upload different files with the same name "chocolate_cake.jpg"
+
+                # Datatime.now() is used to keep all files with a different name, allows the users uplaod files with the same name, avoid error like two peoplo posting a recipe with
+                #   same file name, e.g. two peoplo posting a recipe of chocolate cake and upload different files with the same name "chocolate_cake.jpg"
                 filename = secure_filename(str(datetime.now()) + file.filename) 
                 file_names.append(filename)
                 path_save = os.path.join(upload_folder, filename)
@@ -134,16 +148,12 @@ def get_posts(address):
     
     # Get user info
     user_info = User.query.filter(User.id == current_user.get_id()).first()
+    post_info = Post.query.filter(Post.carousel == 0).all()
 
     # Post_info = recipes titles and descriptions
     if user_info != None:
-        if address == "profile" and user_info.adm_bool == 1:
-            post_info = Post.query.filter(Post.carousel == 0).all()
-        elif address == "profile" and user_info.adm_bool == 0:
+        if address == "profile" and user_info.adm_bool == 0:
             post_info = Post.query.filter(Post.user_id == current_user.id).all()
-    else:
-        if address == "recipes":
-            post_info = Post.query.filter(Post.carousel == 0).all()
 
     # Post_thumb = first image from the uploads to use as a thumbnail
     post_thumb = []
