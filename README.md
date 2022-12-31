@@ -51,11 +51,11 @@ profile.css - once more, flexbox comes to the rescue and helps us with dividing 
 
 ## Javascript
 
-index.js -
+index.js - the first and main JavaScript file. It's where we implemented infinity scroll functions, how many recipes to show first, and how many to load during scroll on recipes.html. It's also where we implemented the delete post function and where we fetch the necessary data with fetchData function to display on our recipes page. (If in need of guidance, check the comments on the code where we explain the different objectives of each part!)
 
-profile.js -
+profile.js - where we made the user interface from profile.html dynamic. With the help of getElementbyId we fetched all the clickable buttons and added, on click, the necessary HTML to show each form. User can change name, e-mail and password. By fetching the <div> where all the HTML info would be rendered, all we had to do was render different HTML forms for each button!
 
-error.js -
+error.js - there was this little bug on recipes where on post deletion it would still redirect the user to the recipe page when clicking on the delete button despite it being, well, deleted. This file prevents that from happening by redirecting the user to the recipes.html page in case the recipe is no longer in our database.
 ## Python
 
 __init__.py - 
