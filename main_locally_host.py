@@ -7,4 +7,4 @@ app = creat_app()
 if __name__ =="__main__":
     app.run(debug=True, host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 5000)))
 
-#A main file to make it easier to host it locally.
+# A main file to make it easier to host it locally.

@@ -1,7 +1,7 @@
-#File to code authentication files routes, such as login and register.
+# File to code authentication files routes, such as login and register.
 import re
 
-from flask import (  # Blueprint allow to code the views, or @app.routes, in multiple files
+from flask import (  # Blueprint that allows to code the views, or @app.routes, in multiple files
     Blueprint, flash, redirect, render_template, request, session, url_for)
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -10,34 +10,34 @@ from . import db
 from .helpers import check_errors, str_to_list
 from .models_database import Post, User
 
-# Blueprint allow to code the views, or @app.routes, in multiple files
+# Blueprint that allows to code the views, or @app.routes, in multiple files
 
-auth = Blueprint('auth', __name__) #setting the Blueprint variable name.
+auth = Blueprint('auth', __name__) # Setting the Blueprint variable name.
 
 @auth.route('/login', methods=['GET', 'POST']) 
 def login():
     if request.method == 'POST':
-        # get user inputs
+        # Get user inputs
         email = request.form.get('email')
         password = request.form.get('password')
 
-        # load the user information at user variable
+        # Load the user information at user variable
         user = User.query.filter_by(email=email).first()
         
-        # check if it's or not an user
+        # Check if it's or not an user
         if user:
             if not check_password_hash(user.password, password):
                 flash('Invalid password and e-mail combination. Please try again.', category='error')
             else:
-                 # if the user and password match, send to the index page
+                 # If the user and password match, send to the index page
                 login_user(user, remember=True)
                 return redirect(url_for('views.index'))
         else:
-            # if it's not an user, flash and error message
+            # If it's not an user, flash and error message
             flash('Invalid e-mail. Please try again or register a new account.', category='error')
     return render_template('login.html', user=current_user)
 
-# logout function
+# Logout function
 @auth.route('/logout')
 @login_required
 def logout():
@@ -55,7 +55,7 @@ def register(type_of_user):
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
         
-        # Creating an user variable to check if the e-mail already in use.
+        # Creating an user variable to check if the e-mail is already in use.
         user = User.query.filter_by(email=email).first()
         if user:
             if user.email == email:
@@ -65,7 +65,7 @@ def register(type_of_user):
                 elif type_of_user == 'adm_user':
                     return render_template('profile.html', user=current_user)
 
-        # Check_errors will check the email, password and user name, if finds any kind of erros will return the number of erros found, otherwise will return 0. Check more at helpers.py
+        # Check_errors will check the email, password and user name, if it finds any kind of errors will return the number of errors found, otherwise will return 0. Check more at helpers.py
         if check_errors(name, email, password1, password2) > 0:
             if type_of_user == 'regular_user':
                 return render_template('login.html', user=current_user)
@@ -92,8 +92,8 @@ def register(type_of_user):
     return render_template('login.html', user=current_user)
 
 
-# Route to profile page, it will contain, all the user recipes, options like: Change password, change username, change e-mail, if the ...
-# ... user is and adm, will contain the option to add another adm
+# Route to profile page, it will contain all the user recipes, options like: Change password, change username, change e-mail, if the ...
+# ... user is an adm, will contain the option to add another adm
 @auth.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
@@ -104,7 +104,7 @@ def profile():
 
     # Check if the user is an adm
     is_adm = user_info.adm_bool
-    # Post_info = recipes titles and descriptions
+    # Post_info = recipe titles and descriptions
     post_info = Post.query.filter(Post.user_id == id).all()
     
     # Post_thumb = first image from the uploads to use as a thumbnail

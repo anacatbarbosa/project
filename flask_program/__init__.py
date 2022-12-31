@@ -10,7 +10,7 @@ DB_NAME = "database.db"
 
 def creat_app():
     
-    #configure app name
+    # Configure app name
     app = Flask(__name__)
 
     # Get a secret Secret_key
@@ -20,7 +20,7 @@ def creat_app():
     picFolder = 'flask_program/static/uploaded_files'
     app.config['UPLOAD_FOLDER'] = picFolder
 
-    # template auto-reload
+    # Template auto-reload
     app.config["TEMPLATES_AUTO_RELOAD"] = True
 
     # Setting database according to https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/quickstart/#configure-the-extension
@@ -29,7 +29,7 @@ def creat_app():
     # Initializing the database, all DOC here: https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/quickstart/
     db.init_app(app)
 
-    #importing the blueprint views to register into our flask app
+    # Importing the blueprint views to register into our flask app
     from .auth import auth
     from .views import views
 
@@ -56,7 +56,7 @@ def creat_app():
         flash('Ups! looking for another cupcake or recipe? That page was not found.', category='error')
         return redirect(url_for('views.index')), 404
 
-    creat_database(app) #only creates a database if it doesn't exist
+    creat_database(app) # Only creates a database if it doesn't exist
 
     return app
 

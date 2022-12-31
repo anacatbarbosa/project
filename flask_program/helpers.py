@@ -29,7 +29,7 @@ def check_password_requirements(password):
         'len': False
     }
 
-    # Set the dict value to True if has the requierements - are they: At least 8 digits, one number, one special char, one lowercase and one uppercase letter
+    # Set the dict value to True if it has the requierements - they are: At least 8 digits, one number, one special char, one lowercase and one uppercase letter
     if len(password) > 7:
         password_need['len'] = True
     for char in password:
@@ -44,12 +44,12 @@ def check_password_requirements(password):
         if char.islower():
             password_need['lowercase'] = True
 
-    # if one or more of the values is False returns the dict to flash the current messages
+    # If one or more of the values is False returns the dict to flash the current messages
     for error in password_need: 
         if password_need[error] == False:
             return password_need
     
-    # if everything goes fine return sucess
+    # If everything goes fine return sucess
     return 'success'
  
 # Flash the error messages according to the dict given from check_password_requirements
@@ -68,8 +68,8 @@ def flash_all(password_errors):
         flash('The password must contain at least 1 lowercase letter.', category='error')
 
 
-# Check_error will be used in multiple files, for differente reasons. If one of the argument is explicity False, it will skip the verification
-# e.g. The check_errors will be used at change_e-mail as well, so the code wont check the name and password
+# Check_error will be used in multiple files, for different reasons. If one of the arguments is explicitly False, it will skip the verification
+# e.g. The check_errors will be used at change_e-mail as well, so the code won't check the name and password
 def check_errors(name, email, password1, password2):
     errors = 0
     if name == False:
@@ -84,11 +84,11 @@ def check_errors(name, email, password1, password2):
         flash('Invalid E-mail.', category='error')
         errors += 1
 
-    # check_password_requirements is a function that returns 'success' or a dictionary that contains all the error with a value False. 
+    # check_password_requirements is a function that returns 'success' or a dictionary that contains all the errors with a value False. 
     if password1 == False:
         pass    
     elif check_password_requirements(password1) != 'success':
-        # flash_all get the dict returned by check_password_requirements and flash all the errors
+        # flash_all gets the dict returned by check_password_requirements and flashes all the errors
         flash_all(check_password_requirements(password1))
         errors += 1
     elif password1 != password2:
@@ -100,8 +100,8 @@ def check_errors(name, email, password1, password2):
 def allowed_file(filename): 
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# func to receive a list in a str format and return as a true list, ex: receive a str - "['teste', 'oi']" and return a list - ['teste', 'oi']
-# if no str pass return a empty list, if an incorrect format value is pass return none
+# Func to receive a list in a str format and return as a true list, ex: receive a str - "['test', 'hi']" and return a list - ['test', 'hi']
+# If no str pass return an empty list, if an incorrect format value is passed return none
 def str_to_list(string):
     list_to_return = []
     item_to_append = ''
@@ -109,14 +109,14 @@ def str_to_list(string):
     if type(string) != type(str()):
         return None
 
-    # if str is empty or an empyt list, return an empyt list
+    # If str is empty or an empty list, return an empty list
     if string == '' or string == '[]':
         return list_to_return
     
     # Going through the string to check where is the '[', ']' and the items inside of it
 
-    quote_one = 0 # check if the forloop found the first quote, after the first quote it will add all to the item_to_append
-    quote_two = 0 # check if the forloop found the second quote, after the second quote it will add the item_to_append to the list_to_returns
+    quote_one = 0 # Check if the forloop found the first quote, after the first quote it will add all to the item_to_append
+    quote_two = 0 # Check if the forloop found the second quote, after the second quote it will add the item_to_append to the list_to_returns
 
     for char in string:
         if char == "'" and quote_one == 0:
@@ -138,11 +138,11 @@ def str_to_list(string):
     return list_to_return
 
 
-# This function will write, or edit a json file to give the infinty scroll the necessary informations
+# This function will write or edit a json file to give the infinity scroll the necessary informations
 def json_to_js(path, posts, current_user_id, adm_bool):
-    # Open and reading what is at json file to find how many times we already called the function infinity scroll. The variable counter inform what is the last image we have stoped at,
-    # the counter always starts at 9, the standard output recipes if the user scrolldown we show more 6.
-    # If the len(path) is lower or iqual to 0, it's not necessery to show more, so it doesn't change the json file
+    # Opening and reading what is at json file to find how many times we already called the function infinity scroll. The variable counter informs what is the last image we have stopped at,
+    # the counter always starts at 9, the standard output recipes. If the user scrolldown we show six more.
+    # If the len(path) is lower or equal to 0, it's not necessary to show more, so it doesn't change the json file
     if len(path) == 0:
         return None
 
@@ -174,13 +174,13 @@ def json_to_js(path, posts, current_user_id, adm_bool):
     data['current_user'] = current_user_id
     data['adm'] = adm_bool
 
-    # Return a dict to the js file.
+    # Returns a dict to the js file.
     return data
 
 
-# Return a list of random number depending of the max quantity
-# max_quantity = Quantity of random numbers to looking for in range(range_random)
-# if the range_random is lower than max_quantity then max_quantity = range_random
+# Returns a list of random numbers depending of the max quantity
+# max_quantity = Quantity of random numbers to look for in range(range_random)
+# If the range_random is lower than max_quantity then max_quantity = range_random
 def get_random_list(range_random, max_quantity):
 
     random_list = []

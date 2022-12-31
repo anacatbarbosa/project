@@ -1,4 +1,4 @@
-#File to code @app.route files, but not authentication files routes, such as login and register.
+# File to code @app.route files, but not authentication files routes, such as login and register.
 import json
 import os
 import random
@@ -13,18 +13,18 @@ from . import db
 from .helpers import allowed_file, get_random_list, json_to_js, str_to_list
 from .models_database import Post, User
 
-#Blueprint allow to code the views, or @app.routes, in multiple files
+# Blueprint that allows to code the views, or @app.routes, in multiple files
 
-#setting the Blueprint variable name.
+# Setting the Blueprint variable name.
 views = Blueprint('views', __name__)
 
-# path to the uploaded folder to save the files. Path from main.py to upoladed_files
+# Path to the uploaded folder to save the files. Path from main.py to upoladed_files
 upload_folder = 'flask_program/static/uploaded_files/'
 
- #path to pass to html file, this path + filename will inform the url to the html go take it
+ # Path to pass to html file, this path + filename will inform the url to the html go take it
 file_to_html =  '../static/uploaded_files'
 
-# If the user search for the url blank goes to home
+# If the user searches for the blank URL is redirected to home
 @views.route('/')
 def star():
     return redirect('/home')
@@ -36,30 +36,30 @@ def index():
     # Max number of images to show randomic in carousel
     max_carousel_display = 5
 
-    # Max number of recipes to show randomic after the carusel
+    # Max number of recipes to show randomic after the carousel
     max_recipes_display = 4
 
-    # Getting post informations
+    # Getting post information
     carousel = Post.query.filter(Post.carousel == 0).all()
 
-    # Selecting randons posts to display
+    # Selecting random posts to display
     random_amount = len(carousel)
 
-    # List to store the path to the carousel informations
+    # List to store the path to the carousel information
     carousel_path = []
     carousel_title = []
     carousel_id = []
     
-    # List to store the path to the random recipes informations
+    # List to store the path to the random recipes information
     recipes_path = []
     recipes_title = []
     recipes_id = []
 
-    # The get_random_list will make sure the random numbers wont exceed the Max_*_display and the quantity of recipes it has on db as well
+    # The get_random_list will make sure the random numbers won't exceed the Max_*_display and the quantity of recipes it has on db as well
     random_posts = get_random_list(random_amount, max_carousel_display)
     random_recipes = get_random_list(random_amount, max_recipes_display)
 
-    # Those for loops will pass the informations to the list's.
+    # These for loops will pass the informations to the lists.
     for i in random_posts:
         hold = str_to_list(carousel[i].filename)
         carousel_title.append(carousel[i].title)
@@ -87,7 +87,7 @@ def about():
 @views.route('/recipes', methods=['GET', 'POST'])
 def recipes():
 
-    # Post will be called when the logged user upload a file
+    # Post will be called when the logged user uploads a file
     if request.method == 'POST':
         # Get the inputs from html
         files = request.files.getlist('files[]')
@@ -102,18 +102,18 @@ def recipes():
             flash('Please insert a description, we need to know how to cook that delicious recipe!', category='error')
             return redirect(url_for('views.recipes'))
         
-        # Store all the file names from user
+        # Stores all the file names from user
         file_names = []
 
-        # Store the path to use into the html 
+        # Stores the path to use into the html 
         path_html = []
 
-        # Go through the files to check if the file name is sercure, and save all the images at static/uploaded_filles 
+        # Go through the files to check if the file name is secure, and save all the images at static/uploaded_files 
         for file in files:
             if file and allowed_file(file.filename):
 
                 # Datatime.now() is used to keep all files with a different name, allows the users uplaod files with the same name, avoid error like two peoplo posting a recipe with
-                #   same file name, e.g. two peoplo posting a recipe of chocolate cake and upload different files with the same name "chocolate_cake.jpg"
+                # Same file name, e.g. two peoplo posting a recipe of chocolate cake and upload different files with the same name "chocolate_cake.jpg"
                 filename = secure_filename(str(datetime.now()) + file.filename) 
                 file_names.append(filename)
                 path_save = os.path.join(upload_folder, filename)
@@ -123,7 +123,7 @@ def recipes():
                 flash('Allowed image types are -> png, jpg, jpeg', category='error')
                 return redirect(url_for('views.recipes'))
 
-        # add all the posts informations to the database
+        # Add all the posts information to the database
         post = Post(carousel=0, description=description, filename=str(file_names), img_path=str(path_html), title=title, user_id=current_user.id) 
         db.session.add(post)
         db.session.commit()
@@ -140,7 +140,7 @@ def recipes_pag(post_title, post_id):
 
     post_path = str_to_list(post.filename)
     
-    # Confirm if the recipe really exist, avoid unkown url recipes
+    # Confirm if the recipe really exists, avoid unkown url recipes
     myfile = upload_folder + post_path[0]
     if os.path.isfile(myfile) == False:
         return redirect(url_for('views.recipes'))
@@ -171,7 +171,7 @@ def get_posts(address):
         post_thumb.append(hold[0])
 
     # If it has a logged user, pass the user id and if the user or not an adm. json_to_js will parse that data to a dict
-    #   that will be jsonify the data for the index.js infinityScroll
+    # That will jsonify the data for the index.js infinityScroll
     if user_info == None:
         data = json_to_js(post_thumb, post_info, None, None)
     else:
@@ -195,7 +195,7 @@ def delete_post():
     post = Post.query.get(postId)
 
 
-    # all the images to delete from the db and the computer
+    # All the images to delete from the db and the computer
     post_info = Post.query.filter(Post.id == postId).first()
     if post:
         if post.user_id == user_info.id or user_info.adm_bool == 1:
