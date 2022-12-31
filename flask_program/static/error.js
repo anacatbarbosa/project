@@ -1,6 +1,4 @@
 function errorFunction() {
-    // Here you implement what's happening if the image failed to load.
-    // For example:
+    // Redirect when image failed to load.
     window.location.href = "/recipes";
-    // or
   }

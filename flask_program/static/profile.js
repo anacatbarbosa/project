@@ -6,6 +6,7 @@ const emailButton = document.getElementById('emailChange');
 const pwButton = document.getElementById('pwChange');
 const adminButton = document.getElementById('addAdmin');
 
+// Change the div content to the Change Name form
 function changeName() {
     profileDiv.innerHTML = `
         <div class="changeName">
@@ -32,6 +33,7 @@ function changeName() {
     `
 }
 
+// Change the div content to the Change Email form
 function changeEmail() {
     profileDiv.innerHTML = `
         <div class="changeEmail">
@@ -58,6 +60,7 @@ function changeEmail() {
     `
 }
 
+// Change the div content to the Change Password form
 function pwChange() {
     profileDiv.innerHTML = `
         <div class="changePw">
@@ -90,6 +93,7 @@ function pwChange() {
     `
 }
 
+// Change the div content to the Add an Adm form, only available to adm users
 function addAdmin() {
     profileDiv.innerHTML = `
         <div class="changePw">
@@ -128,6 +132,7 @@ function addAdmin() {
     `
 }
 
+// Adding eventListener to all buttons to switch the div content after click
 nameButton.addEventListener("click", changeName);
 emailButton.addEventListener("click", changeEmail);
 pwButton.addEventListener("click", pwChange);

@@ -1,19 +1,22 @@
+// Get the infintyscroll div
 const container = document.querySelector('#infinity');
-// needed in my profile to show only user recipes and not all recipes
+
+// Needed in my profile to show only user recipes and not all recipes
 let url = String(window.location.href).split('/')
 url = url[url.length - 1]
-/* number of recipes displayed at first when accessing recipes page */
+
+/* Number of recipes displayed at first when accessing recipes page */
 const firstRecipes = 9
 
-/* number of recipes shown when hitting the end of page and enabling infinity scroll */
+/* Number of recipes shown when hitting the end of page and enabling infinity scroll */
 const scrollRecipes = 6
 
 /* Check if it has a scroll bar visible*/
 function hasScrollBar(element) {
     var el = document.getElementById(element);
-    /*var style = window.getComputedStyle(el, null).getPropertyValue('font-size');*/
+
+    // Check if it has a horizontal ScrollBar, if it does, add a class to style it easier
     var hs = el.scrollWidth > el.clientWidth;
-    
     if (hs == true)
     {
         var el2 = document.getElementById("hrSize" + element);
@@ -27,11 +30,11 @@ function deletePost(postId){
         method: "POST",
         body:JSON.stringify({postId: postId}),
     }).then((_res)=>{
-        window.location.href = String("/" + url);
+        window.location.href = String("/" + url); // After send the details to delete_post refresh the page in the same url
     });
 }
 
-/* signaling the back end to receive a json file with all the post information to show on page */
+/* Signaling the back end to receive a json file with all the post information to show on page */
 async function fetchData(url){
     const adress = '/get_posts/' + url;
     let response = await fetch(adress, {method: 'POST'});
@@ -43,18 +46,23 @@ async function fetchData(url){
 
 let scroll_counter = 0;
 
-/* function to load numImages to show on #infinity div at recipes.html
+/* Function to load numImages to show on #infinity div at recipes.html
    post_details contains path, titles and post_id*/
 async function loadImages (already_uploaded, numImages = firstRecipes) {
     if (container == null) {
         return false;
     }
+
     const post_details = await fetchData(url)
-    const total_posts = post_details['path'].length /* counts every post */
+
+    /* Length of the total amount of every post */
+    const total_posts = post_details['path'].length
     let i = already_uploaded;
+
+    // numImages receives the position of wherer the variable I should stop
     numImages += already_uploaded
 
-    /* loop breaks when total posts are reached */
+    /* Loop add all the content and breaks when total posts are reached */
     while (i < numImages && i < total_posts) {
         const buttonEl = document.createElement('a')
         buttonEl.classList.add('col-sm')
