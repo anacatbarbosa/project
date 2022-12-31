@@ -5,8 +5,8 @@
 }
 
 .carouselSize {
-    box-shadow: 1px 2px 10px rgb(116, 116, 116);
     width: 50%;
+    margin: 10px 0 10px 5px;
 }
 
 .carouselRecipes-item {
@@ -14,7 +14,7 @@
 }
 
 .carouselRecipes-item img {
-    height: 100%;
+    border-radius: 10px;
 }
 
 .recipeDetails {
