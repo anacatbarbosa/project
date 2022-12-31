@@ -46,8 +46,8 @@ def logout():
 
 
 # Register function
-@auth.route('/register', methods=['GET', 'POST'])
-def register():
+@auth.route('/register/<string:type_of_user>', methods=['POST'])
+def register(type_of_user):
     if request.method == 'POST':
         # Getting all the form information from the login.html register Form
         name = request.form.get('username')
@@ -60,17 +60,32 @@ def register():
         if user:
             if user.email == email:
                 flash('E-mail already in use. Please try another one.', category='error')
-                return render_template('login.html', user=current_user)
+                if type_of_user == 'regular_user':
+                    return render_template('login.html', user=current_user)
+                elif type_of_user == 'adm_user':
+                    return render_template('profile.html', user=current_user)
 
         # Check_errors will check the email, password and user name, if finds any kind of erros will return the number of erros found, otherwise will return 0. Check more at helpers.py
         if check_errors(name, email, password1, password2) > 0:
-            return render_template('login.html', user=current_user)
+            if type_of_user == 'regular_user':
+                return render_template('login.html', user=current_user)
+            elif type_of_user == 'adm_user':
+                return render_template('profile.html', user=current_user)
         else:
             # To get here no error was detected, after that it will add the user to the db and redirect to the main page, the index.html 
-            new_user = User(email=email, password=generate_password_hash(password1), name=name, adm_bool=0) #adm_bool = 0 means not and adm_bool = 1 means it's an adm
+            if type_of_user == 'regular_user':
+                new_user = User(email=email, password=generate_password_hash(password1), name=name, adm_bool=0) #adm_bool = 0 means not and adm_bool = 1 means it's an adm
+            elif type_of_user == 'adm_user':
+                new_user = User(email=email, password=generate_password_hash(password1), name=name, adm_bool=1) #adm_bool = 0 means not and adm_bool = 1 means it's an adm
+            
             db.session.add(new_user)
             db.session.commit()
-            flash('Account created!', category='success')
+            
+            if type_of_user == 'regular_user':
+                flash('Account created!', category='success')
+            elif type_of_user == 'adm_user':
+               flash('Admin account created!', category='success')
+    
             login_user(new_user, remember=True)
             return redirect(url_for('views.index'))
 
@@ -87,6 +102,8 @@ def profile():
     id = current_user.id
     user_info = User.query.filter(User.id == id).first()
 
+    # Check if the user is an adm
+    is_adm = user_info.adm_bool
     # Post_info = recipes titles and descriptions
     post_info = Post.query.filter(Post.user_id == id).all()
     
@@ -97,7 +114,7 @@ def profile():
         hold = str_to_list(i.filename)
         post_thumb.append(hold[0])
 
-    return render_template('profile.html', user=current_user, user_name=user_info.name, user_email=user_info.email ,my_recipes=post_thumb)
+    return render_template('profile.html', user=current_user, user_name=user_info.name, user_email=user_info.email ,my_recipes=post_thumb, is_adm=is_adm)
 
 @auth.route('/profile/<string:item>', methods=['POST'])
 @login_required

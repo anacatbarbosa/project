@@ -129,17 +129,22 @@ def recipes_pag(post_title, post_id):
     return render_template('recipe_details.html', user=current_user, page_title=str(post_title), carouselimg = post_path, post_info = post, carousel_buttons=carousel_buttons)
 
 
-@views.route('/get_posts/<string:adress>', methods=['POST'])
-def get_posts(adress):
+@views.route('/get_posts/<string:address>', methods=['POST'])
+def get_posts(address):
     
-    # Post_info = recipes titles and descriptions
-    if adress == "profile":
-        post_info = Post.query.filter(Post.user_id == current_user.id).all()
-    else:
-        post_info = Post.query.filter(Post.carousel == 0).all()
-
     # Get user info
     user_info = User.query.filter(User.id == current_user.get_id()).first()
+
+    # Post_info = recipes titles and descriptions
+    if user_info != None:
+        if address == "profile" and user_info.adm_bool == 1:
+            post_info = Post.query.filter(Post.carousel == 0).all()
+        elif address == "profile" and user_info.adm_bool == 0:
+            post_info = Post.query.filter(Post.user_id == current_user.id).all()
+    else:
+        if address == "recipes":
+            post_info = Post.query.filter(Post.carousel == 0).all()
+
     # Post_thumb = first image from the uploads to use as a thumbnail
     post_thumb = []
 
@@ -163,13 +168,17 @@ def delete_post():
     post = json.loads(request.data)
     postId = post['postId']
 
+    # Get user information
+    user_info = User.query.filter(User.id == current_user.get_id()).first()
+
     # Get the column needed to drop
     post = Post.query.get(postId)
+
 
     # all the images to delete from the db and the computer
     post_info = Post.query.filter(Post.id == postId).first()
     if post:
-        if post.user_id == current_user.id:
+        if post.user_id == user_info.id or user_info.adm_bool == 1:
             
             # Parse the str list format to a real list
             list_delete = str_to_list(post_info.filename)

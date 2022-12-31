@@ -11,9 +11,9 @@ function changeName() {
         <div class="changeName">
             <form method="post" action="/profile/name">
                 <div class="form-group row">
-                    <label for="newName" class="col-sm-2 col-form-label">New Username</label>
+                    <label for="newName" class="col-sm-2 col-form-label">New Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="newName" id="newName" placeholder="New Username">
+                        <input type="text" class="form-control" name="newName" id="newName" placeholder="New Name">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -93,7 +93,7 @@ function pwChange() {
 function addAdmin() {
     profileDiv.innerHTML = `
         <div class="changePw">
-            <form class="addAdmin" action="" method="post">
+            <form class="addAdmin" action="/register/adm_user" method="post">
                 <div class="form-group row">
                     <label for="username" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
