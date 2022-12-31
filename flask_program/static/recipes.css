@@ -115,6 +115,14 @@ hr {
     max-width: 100%;
 }
 
+@media only screen and (min-width: 1604px) {
+    .col-sm {
+        flex-basis: 30%;
+        margin: 10px;
+        max-width: 340px;
+        height: 340px;
+    }
+}
 /* Responsive mode bellow*/
 @media only screen and (max-width: 1009px) {
     .col-sm {
