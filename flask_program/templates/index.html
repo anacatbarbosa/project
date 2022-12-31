@@ -84,7 +84,7 @@
           {% endif %}
           {% endwith %}
           {% block main %}
-            <h1>Receitas em Destaque &#127856;</h1>
+            <h1>Recipe Highlights &#127856;</h1>
             <div id="carouselHighlights" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-inner carouselHighlights">
                 {% for image in carousel_highlights %}
@@ -104,7 +104,7 @@
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
-            <h3>As nossas sugestões:</h3>
+            <h3>Our suggestions:</h3>
             <div class="row index">
                 {% for recipe in recipes_highlights %}
                     <a href="/recipes/{{recipes_title[loop.index - 1]}}/{{recipes_id[loop.index - 1]}}" class="col-sm index">
